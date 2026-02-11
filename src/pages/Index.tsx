@@ -55,6 +55,8 @@ export default function Index() {
     }
   };
 
+  const [round2Data, setRound2Data] = useState<Category[]>([]);
+
   const startGame = (level: GameLevel) => {
     if (players.length > 0) {
       setSelectedLevel(level);
@@ -63,6 +65,7 @@ export default function Index() {
       const round2 = JSON.parse(JSON.stringify(gameData.round2));
       const withInteractives = addInteractivesToGame(round1, round2);
       setCategories(withInteractives.round1);
+      setRound2Data(withInteractives.round2);
       setGameState('round1');
     }
   };
@@ -162,11 +165,7 @@ export default function Index() {
     const allAnswered = categories.every((cat) => cat.questions.every((q) => q.answered));
     if (allAnswered && selectedLevel) {
       if (gameState === 'round1') {
-        const gameData = GAME_DATA[selectedLevel];
-        const round1 = JSON.parse(JSON.stringify(gameData.round1));
-        const round2 = JSON.parse(JSON.stringify(gameData.round2));
-        const withInteractives = addInteractivesToGame(round1, round2);
-        setCategories(withInteractives.round2);
+        setCategories(round2Data);
         setGameState('round2');
       } else if (gameState === 'round2') {
         const gameData = GAME_DATA[selectedLevel];
@@ -213,6 +212,7 @@ export default function Index() {
     setGameState('setup');
     setSelectedLevel(null);
     setCategories([]);
+    setRound2Data([]);
     setPlayers([]);
     setCurrentPlayer(0);
     setSelectedQuestion(null);
