@@ -15,7 +15,7 @@ type Player = {
   hasHint: boolean;
 };
 
-type GameState = 'setup' | 'round1' | 'round2' | 'final-betting' | 'final-question' | 'results';
+type GameState = 'setup' | 'round1' | 'round1-end' | 'round2' | 'round2-end' | 'final-betting' | 'final-question' | 'results';
 
 export default function Index() {
   const [gameState, setGameState] = useState<GameState>('setup');
@@ -165,13 +165,23 @@ export default function Index() {
     const allAnswered = categories.every((cat) => cat.questions.every((q) => q.answered));
     if (allAnswered && selectedLevel) {
       if (gameState === 'round1') {
-        setCategories(round2Data);
-        setGameState('round2');
+        setGameState('round1-end');
       } else if (gameState === 'round2') {
-        const gameData = GAME_DATA[selectedLevel];
-        setRemainingThemes(gameData.final.map((_, i) => i));
-        setGameState('final-betting');
+        setGameState('round2-end');
       }
+    }
+  };
+
+  const startRound2 = () => {
+    setCategories(round2Data);
+    setGameState('round2');
+  };
+
+  const startFinalRound = () => {
+    if (selectedLevel) {
+      const gameData = GAME_DATA[selectedLevel];
+      setRemainingThemes(gameData.final.map((_, i) => i));
+      setGameState('final-betting');
     }
   };
 
@@ -587,6 +597,106 @@ export default function Index() {
               </div>
             </>
           )}
+        </Card>
+      </div>
+    );
+  }
+
+  if (gameState === 'round1-end') {
+    const sortedPlayers = [...players].sort((a, b) => b.score - a.score);
+    return (
+      <div className="min-h-screen flex items-center justify-center p-4 bg-background">
+        <Card className="w-full max-w-4xl p-10 space-y-8 bg-white shadow-sm">
+          <div className="text-center space-y-4">
+            <Icon name="CheckCircle" size={80} className="mx-auto text-primary" />
+            <h1 className="text-5xl font-bold text-primary">Раунд 1 завершен!</h1>
+            <p className="text-xl text-muted-foreground">Промежуточные результаты</p>
+          </div>
+
+          <div className="space-y-3">
+            {sortedPlayers.map((player, index) => (
+              <div
+                key={player.id}
+                className={`flex items-center justify-between p-5 rounded-lg transition-all ${
+                  index === 0
+                    ? 'bg-primary/10 border-2 border-primary'
+                    : 'bg-secondary/30 border border-border/40'
+                }`}
+              >
+                <div className="flex items-center gap-4">
+                  <div className="text-3xl w-12 text-center">{index + 1}.</div>
+                  <span className="text-xl font-semibold">{player.name}</span>
+                </div>
+                <div className="text-3xl font-bold text-primary">{player.score}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="bg-accent/10 border-2 border-accent rounded-lg p-6 space-y-3">
+            <h3 className="text-2xl font-bold text-center text-accent">Раунд 2: Глубина</h3>
+            <ul className="space-y-2 text-muted-foreground">
+              <li>• Вопросы от 200 до 1000 баллов</li>
+              <li>• Более сложные темы</li>
+              <li>• Сохраняются интерактивы из раунда 1</li>
+            </ul>
+          </div>
+
+          <Button onClick={startRound2} className="w-full bg-primary hover:bg-primary/90 text-xl py-8">
+            <Icon name="Play" size={24} className="mr-2" />
+            Начать Раунд 2
+          </Button>
+        </Card>
+      </div>
+    );
+  }
+
+  if (gameState === 'round2-end') {
+    const sortedPlayers = [...players].sort((a, b) => b.score - a.score);
+    const topPlayers = sortedPlayers.slice(0, 3);
+    return (
+      <div className="min-h-screen flex items-center justify-center p-4 bg-background">
+        <Card className="w-full max-w-4xl p-10 space-y-8 bg-white shadow-sm">
+          <div className="text-center space-y-4">
+            <Icon name="Award" size={80} className="mx-auto text-primary" />
+            <h1 className="text-5xl font-bold text-primary">Раунд 2 завершен!</h1>
+            <p className="text-xl text-muted-foreground">Результаты перед финалом</p>
+          </div>
+
+          <div className="space-y-3">
+            {sortedPlayers.map((player, index) => (
+              <div
+                key={player.id}
+                className={`flex items-center justify-between p-5 rounded-lg transition-all ${
+                  index < 3
+                    ? 'bg-primary/10 border-2 border-primary'
+                    : 'bg-muted/50 border border-border/40 opacity-60'
+                }`}
+              >
+                <div className="flex items-center gap-4">
+                  <div className="text-3xl w-12 text-center">
+                    {index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}.`}
+                  </div>
+                  <span className="text-xl font-semibold">{player.name}</span>
+                </div>
+                <div className="text-3xl font-bold text-primary">{player.score}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="bg-destructive/10 border-2 border-destructive rounded-lg p-6 space-y-3">
+            <h3 className="text-2xl font-bold text-center text-destructive">Финальный раунд</h3>
+            <ul className="space-y-2 text-muted-foreground">
+              <li>• В финал проходят топ-3 команды: <strong>{topPlayers.map(p => p.name).join(', ')}</strong></li>
+              <li>• Команды по очереди убирают темы (остается одна)</li>
+              <li>• Каждая команда делает ставку от 0 до всех своих баллов</li>
+              <li>• Один вопрос решает победителя!</li>
+            </ul>
+          </div>
+
+          <Button onClick={startFinalRound} className="w-full bg-primary hover:bg-primary/90 text-xl py-8">
+            <Icon name="Zap" size={24} className="mr-2" />
+            Начать финал
+          </Button>
         </Card>
       </div>
     );
