@@ -3,7 +3,7 @@ export type Question = {
   answer: string;
   points: number;
   answered: boolean;
-  special?: 'cat' | 'hint';
+  special?: 'cat' | 'hint' | 'double';
 };
 
 export type Category = {
@@ -91,7 +91,7 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
           { question: 'Как называется коллектив из пяти музыкантов?', answer: 'Квинтет', points: 400, answered: false },
           { question: 'Кто спел хит "Белые розы"?', answer: 'Группа "Ласковый май"', points: 600, answered: false },
           { question: 'Какой группе принадлежит альбом "The Wall"?', answer: 'Pink Floyd', points: 800, answered: false, special: 'cat' },
-          { question: 'Какой танец исполняется в балете "Щелкунчик"?', answer: 'Танец феи Драже', points: 1000, answered: false, special: 'hint' },
+          { question: 'Какой танец исполняется в балете "Щелкунчик"?', answer: 'Танец феи Драже', points: 1000, answered: false },
         ],
       },
       {

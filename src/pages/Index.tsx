@@ -6,11 +6,13 @@ import { Input } from '@/components/ui/input';
 import { Slider } from '@/components/ui/slider';
 import Icon from '@/components/ui/icon';
 import { GAME_DATA, type GameLevel, type Category } from '@/data/gameData';
+import { addInteractivesToGame } from '@/utils/gameHelpers';
 
 type Player = {
   id: number;
   name: string;
   score: number;
+  hasHint: boolean;
 };
 
 type GameState = 'setup' | 'round1' | 'round2' | 'final-betting' | 'final-question' | 'results';
@@ -32,7 +34,7 @@ export default function Index() {
   const [remainingThemes, setRemainingThemes] = useState<number[]>([]);
   const [finalTheme, setFinalTheme] = useState<number | null>(null);
   const [catTarget, setCatTarget] = useState<number | null>(null);
-  const [hintUsed, setHintUsed] = useState<{ [key: number]: boolean }>({});
+  const [hintShown, setHintShown] = useState(false);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -48,7 +50,7 @@ export default function Index() {
 
   const addPlayer = () => {
     if (newPlayerName.trim()) {
-      setPlayers([...players, { id: players.length, name: newPlayerName, score: 0 }]);
+      setPlayers([...players, { id: players.length, name: newPlayerName, score: 0, hasHint: false }]);
       setNewPlayerName('');
     }
   };
@@ -57,7 +59,10 @@ export default function Index() {
     if (players.length > 0) {
       setSelectedLevel(level);
       const gameData = GAME_DATA[level];
-      setCategories(JSON.parse(JSON.stringify(gameData.round1)));
+      const round1 = JSON.parse(JSON.stringify(gameData.round1));
+      const round2 = JSON.parse(JSON.stringify(gameData.round2));
+      const withInteractives = addInteractivesToGame(round1, round2);
+      setCategories(withInteractives.round1);
       setGameState('round1');
     }
   };
@@ -65,15 +70,22 @@ export default function Index() {
   const selectQuestion = (categoryIndex: number, questionIndex: number) => {
     const question = categories[categoryIndex].questions[questionIndex];
     if (!question.answered) {
+      setSelectedQuestion({ category: categoryIndex, question: questionIndex });
+      setShowAnswer(false);
+      setHintShown(false);
+
       if (question.special === 'cat') {
-        setSelectedQuestion({ category: categoryIndex, question: questionIndex });
-        setShowAnswer(false);
-      } else {
-        setSelectedQuestion({ category: categoryIndex, question: questionIndex });
-        setShowAnswer(false);
-        setTimeLeft(gameState === 'final-question' ? 60 : 30);
-        setTimerActive(true);
+        return;
       }
+
+      if (question.special === 'hint') {
+        const newPlayers = [...players];
+        newPlayers[currentPlayer].hasHint = true;
+        setPlayers(newPlayers);
+      }
+
+      setTimeLeft(30);
+      setTimerActive(true);
     }
   };
 
@@ -91,6 +103,8 @@ export default function Index() {
     setTimerActive(false);
     setTimeLeft(30);
     setCatTarget(null);
+    setHintShown(false);
+    nextPlayer();
   };
 
   const revealAnswer = () => {
@@ -99,10 +113,7 @@ export default function Index() {
   };
 
   const useHint = () => {
-    if (selectedQuestion && !hintUsed[currentPlayer]) {
-      setHintUsed({ ...hintUsed, [currentPlayer]: true });
-      setTimeLeft(timeLeft + 15);
-    }
+    setHintShown(true);
   };
 
   const answerCorrect = () => {
@@ -110,7 +121,8 @@ export default function Index() {
       const question = categories[selectedQuestion.category].questions[selectedQuestion.question];
       const newPlayers = [...players];
       const targetId = catTarget !== null ? catTarget : currentPlayer;
-      newPlayers[targetId].score += question.points;
+      const points = question.special === 'double' ? question.points * 2 : question.points;
+      newPlayers[targetId].score += points;
       setPlayers(newPlayers);
 
       const newCategories = [...categories];
@@ -135,7 +147,6 @@ export default function Index() {
       setCategories(newCategories);
 
       closeQuestion();
-      nextPlayer();
       checkRoundEnd();
     }
   };
@@ -149,7 +160,10 @@ export default function Index() {
     if (allAnswered && selectedLevel) {
       if (gameState === 'round1') {
         const gameData = GAME_DATA[selectedLevel];
-        setCategories(JSON.parse(JSON.stringify(gameData.round2)));
+        const round1 = JSON.parse(JSON.stringify(gameData.round1));
+        const round2 = JSON.parse(JSON.stringify(gameData.round2));
+        const withInteractives = addInteractivesToGame(round1, round2);
+        setCategories(withInteractives.round2);
         setGameState('round2');
       } else if (gameState === 'round2') {
         const gameData = GAME_DATA[selectedLevel];
@@ -165,6 +179,7 @@ export default function Index() {
     if (newThemes.length === 1) {
       setFinalTheme(newThemes[0]);
     }
+    nextPlayer();
   };
 
   const placeBet = (playerId: number, bet: number) => {
@@ -207,7 +222,7 @@ export default function Index() {
     setRemainingThemes([]);
     setFinalTheme(null);
     setCatTarget(null);
-    setHintUsed({});
+    setHintShown(false);
   };
 
   if (gameState === 'setup') {
@@ -324,6 +339,8 @@ export default function Index() {
                   <li>• <strong>Раунд 1:</strong> 6 тем × 5 вопросов (100-500 баллов)</li>
                   <li>• <strong>Раунд 2:</strong> 6 тем × 5 вопросов (200-1000 баллов)</li>
                   <li>• <strong>Финал:</strong> Топ-3 команды, ставки и один вопрос</li>
+                  <li>• Команды выбирают вопросы по очереди</li>
+                  <li>• Команда, выбравшая вопрос, обязана на него ответить</li>
                 </ul>
               </div>
 
@@ -352,10 +369,27 @@ export default function Index() {
 
               <div>
                 <h3 className="font-bold text-lg mb-2 text-primary">Подсказка 💡</h3>
-                <p className="text-muted-foreground">
-                  Каждая команда имеет право на <strong>одну подсказку</strong> за всю игру. 
-                  Подсказка добавляет <strong>+15 секунд</strong> к таймеру текущего вопроса.
+                <p className="text-muted-foreground mb-2">
+                  В игре спрятан <strong>один вопрос с подсказкой</strong>. Команда, открывшая этот вопрос:
                 </p>
+                <ul className="space-y-1 text-muted-foreground">
+                  <li>• Получает право на <strong>одну подсказку</strong> до конца игры</li>
+                  <li>• Может использовать подсказку на любом вопросе</li>
+                  <li>• При использовании подсказки — ведущий помогает команде</li>
+                  <li>• Подсказка видна только после открытия вопроса</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-bold text-lg mb-2 text-green-600">Повышенный номинал ×2</h3>
+                <p className="text-muted-foreground mb-2">
+                  В игре спрятано <strong>3 вопроса с повышенным номиналом</strong>:
+                </p>
+                <ul className="space-y-1 text-muted-foreground">
+                  <li>• Правильный ответ = <strong>двойные баллы</strong></li>
+                  <li>• Неправильный ответ = обычный штраф</li>
+                  <li>• Повышенный номинал виден только после открытия вопроса</li>
+                </ul>
               </div>
 
               <div>
@@ -391,7 +425,7 @@ export default function Index() {
               <div>
                 <h1 className="text-3xl font-bold text-primary">Финальный раунд</h1>
                 <p className="text-muted-foreground mt-1">
-                  {finalTheme === null ? 'Исключите темы, оставив одну' : 'Сделайте ставки'}
+                  {finalTheme === null ? `Ход команды: ${players[currentPlayer].name}` : 'Сделайте ставки'}
                 </p>
               </div>
               <Button variant="outline" onClick={resetGame} size="sm">
@@ -634,8 +668,8 @@ export default function Index() {
                 <h3 className="font-semibold text-sm truncate">{player.name}</h3>
               </div>
               <div className="text-2xl font-bold text-primary">{player.score}</div>
-              {!hintUsed[player.id] && (
-                <div className="text-xs text-muted-foreground mt-1">💡 доступна</div>
+              {player.hasHint && (
+                <div className="text-xs text-green-600 mt-1 font-semibold">💡 есть подсказка</div>
               )}
             </Card>
           ))}
@@ -667,8 +701,8 @@ export default function Index() {
         </div>
       </div>
 
-      <Dialog open={selectedQuestion !== null} onOpenChange={closeQuestion}>
-        <DialogContent className="max-w-3xl bg-white">
+      <Dialog open={selectedQuestion !== null} onOpenChange={() => {}}>
+        <DialogContent className="max-w-3xl bg-white" onPointerDownOutside={(e) => e.preventDefault()}>
           {selectedQuestion && (
             <>
               <DialogHeader>
@@ -705,19 +739,45 @@ export default function Index() {
 
                 {catTarget !== null || categories[selectedQuestion.category].questions[selectedQuestion.question].special !== 'cat' ? (
                   <>
-                    {timerActive && (
-                      <div className="flex items-center justify-center gap-4">
-                        <Icon name="Clock" size={32} className="text-primary" />
-                        <div className="text-5xl font-bold text-primary">{timeLeft}с</div>
-                        {categories[selectedQuestion.category].questions[selectedQuestion.question].special ===
-                          'hint' &&
-                          !hintUsed[currentPlayer] && (
-                            <Button onClick={useHint} variant="outline" size="sm">
-                              <Icon name="Lightbulb" size={18} className="mr-2" />
-                              Подсказка
-                            </Button>
-                          )}
-                      </div>
+                    {categories[selectedQuestion.category].questions[selectedQuestion.question].special === 'hint' && (
+                      <Card className="p-4 bg-green-50 border-2 border-green-500">
+                        <p className="text-center text-lg font-bold text-green-700">💡 Подсказка найдена!</p>
+                        <p className="text-center text-sm text-green-600 mt-1">
+                          Команда "{players[currentPlayer].name}" получила право на одну подсказку до конца игры
+                        </p>
+                      </Card>
+                    )}
+
+                    {categories[selectedQuestion.category].questions[selectedQuestion.question].special === 'double' && (
+                      <Card className="p-4 bg-green-50 border-2 border-green-500">
+                        <p className="text-center text-xl font-bold text-green-700">×2 Повышенный номинал!</p>
+                        <p className="text-center text-sm text-green-600 mt-1">
+                          Правильный ответ = {categories[selectedQuestion.category].questions[selectedQuestion.question].points * 2} баллов
+                        </p>
+                      </Card>
+                    )}
+
+                    <div className="flex items-center justify-center gap-4">
+                      {timerActive && (
+                        <>
+                          <Icon name="Clock" size={32} className="text-primary" />
+                          <div className="text-5xl font-bold text-primary">{timeLeft}с</div>
+                        </>
+                      )}
+                      {players[currentPlayer].hasHint && !hintShown && (
+                        <Button onClick={useHint} variant="outline" className="border-green-500 text-green-700 hover:bg-green-50">
+                          <Icon name="Lightbulb" size={18} className="mr-2" />
+                          Использовать подсказку
+                        </Button>
+                      )}
+                    </div>
+
+                    {hintShown && (
+                      <Card className="p-4 bg-yellow-50 border-2 border-yellow-500">
+                        <p className="text-center text-yellow-800 font-semibold">
+                          ℹ️ Ведущий дает подсказку команде "{players[currentPlayer].name}"
+                        </p>
+                      </Card>
                     )}
 
                     <Card className="p-8 bg-secondary/30 border border-border/40">
@@ -782,6 +842,8 @@ export default function Index() {
                 <li>• <strong>Раунд 1:</strong> 6 тем × 5 вопросов (100-500 баллов)</li>
                 <li>• <strong>Раунд 2:</strong> 6 тем × 5 вопросов (200-1000 баллов)</li>
                 <li>• <strong>Финал:</strong> Топ-3 команды, ставки и один вопрос</li>
+                <li>• Команды выбирают вопросы по очереди</li>
+                <li>• Команда, выбравшая вопрос, обязана на него ответить</li>
               </ul>
             </div>
 
@@ -810,10 +872,27 @@ export default function Index() {
 
             <div>
               <h3 className="font-bold text-lg mb-2 text-primary">Подсказка 💡</h3>
-              <p className="text-muted-foreground">
-                Каждая команда имеет право на <strong>одну подсказку</strong> за всю игру. 
-                Подсказка добавляет <strong>+15 секунд</strong> к таймеру текущего вопроса.
+              <p className="text-muted-foreground mb-2">
+                В игре спрятан <strong>один вопрос с подсказкой</strong>. Команда, открывшая этот вопрос:
               </p>
+              <ul className="space-y-1 text-muted-foreground">
+                <li>• Получает право на <strong>одну подсказку</strong> до конца игры</li>
+                <li>• Может использовать подсказку на любом вопросе</li>
+                <li>• При использовании подсказки — ведущий помогает команде</li>
+                <li>• Подсказка видна только после открытия вопроса</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-lg mb-2 text-green-600">Повышенный номинал ×2</h3>
+              <p className="text-muted-foreground mb-2">
+                В игре спрятано <strong>3 вопроса с повышенным номиналом</strong>:
+              </p>
+              <ul className="space-y-1 text-muted-foreground">
+                <li>• Правильный ответ = <strong>двойные баллы</strong></li>
+                <li>• Неправильный ответ = обычный штраф</li>
+                <li>• Повышенный номинал виден только после открытия вопроса</li>
+              </ul>
             </div>
 
             <div>
