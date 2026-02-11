@@ -467,11 +467,25 @@ export default function Index() {
           )}
 
           {finalTheme !== null && (
-            <Card className="p-6 bg-primary/5 border-primary/20">
-              <h2 className="text-2xl font-bold text-center text-primary">
-                Финальная тема: {finalData[finalTheme].theme}
-              </h2>
-            </Card>
+            <>
+              <Card className="p-6 bg-destructive/10 border-2 border-destructive">
+                <div className="flex items-center gap-3">
+                  <Icon name="EyeOff" size={32} className="text-destructive flex-shrink-0" />
+                  <div>
+                    <h3 className="text-xl font-bold text-destructive">Важно для организаторов!</h3>
+                    <p className="text-muted-foreground mt-1">
+                      Просьба скрыть игру с большого экрана до момента, когда все команды сделают ставку
+                    </p>
+                  </div>
+                </div>
+              </Card>
+              
+              <Card className="p-6 bg-primary/5 border-primary/20">
+                <h2 className="text-2xl font-bold text-center text-primary">
+                  Финальная тема: {finalData[finalTheme].theme}
+                </h2>
+              </Card>
+            </>
           )}
 
           <div className="grid md:grid-cols-3 gap-4">
