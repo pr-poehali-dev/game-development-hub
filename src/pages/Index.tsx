@@ -114,6 +114,9 @@ export default function Index() {
 
   const useHint = () => {
     setHintShown(true);
+    const newPlayers = [...players];
+    newPlayers[currentPlayer].hasHint = false;
+    setPlayers(newPlayers);
   };
 
   const answerCorrect = () => {
