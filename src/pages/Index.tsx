@@ -35,6 +35,7 @@ export default function Index() {
   const [finalTheme, setFinalTheme] = useState<number | null>(null);
   const [catTarget, setCatTarget] = useState<number | null>(null);
   const [hintShown, setHintShown] = useState(false);
+  const [betInputs, setBetInputs] = useState<{ [key: number]: string }>({});
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -236,6 +237,7 @@ export default function Index() {
     setFinalTheme(null);
     setCatTarget(null);
     setHintShown(false);
+    setBetInputs({});
   };
 
   if (gameState === 'setup') {
@@ -511,31 +513,41 @@ export default function Index() {
                     <label className="text-sm text-muted-foreground block">
                       Ставка (макс: {Math.max(player.score, 0)})
                     </label>
+                    <div className="flex gap-2">
+                      <Input
+                        type="number"
+                        min={0}
+                        max={Math.max(player.score, 0)}
+                        value={betInputs[player.id] || '0'}
+                        onChange={(e) => {
+                          const value = e.target.value;
+                          const numValue = parseInt(value) || 0;
+                          const maxBet = Math.max(player.score, 0);
+                          const validValue = Math.min(Math.max(numValue, 0), maxBet);
+                          setBetInputs({ ...betInputs, [player.id]: validValue.toString() });
+                        }}
+                        className="flex-1 text-lg text-center font-bold"
+                        placeholder="0"
+                      />
+                      <Button
+                        onClick={() => {
+                          const bet = parseInt(betInputs[player.id] || '0');
+                          placeBet(player.id, bet);
+                        }}
+                        className="bg-primary hover:bg-primary/90 px-6"
+                      >
+                        ✓
+                      </Button>
+                    </div>
                     <Slider
                       min={0}
                       max={Math.max(player.score, 0)}
                       step={50}
-                      defaultValue={[0]}
+                      value={[parseInt(betInputs[player.id] || '0')]}
                       onValueChange={(value) => {
-                        const btn = document.getElementById(`bet-btn-${player.id}`) as HTMLButtonElement;
-                        if (btn) {
-                          btn.textContent = `Поставить ${value[0]}`;
-                          btn.dataset.bet = value[0].toString();
-                        }
+                        setBetInputs({ ...betInputs, [player.id]: value[0].toString() });
                       }}
-                      className="mb-3"
                     />
-                    <Button
-                      id={`bet-btn-${player.id}`}
-                      onClick={(e) => {
-                        const bet = parseInt((e.target as HTMLButtonElement).dataset.bet || '0');
-                        placeBet(player.id, bet);
-                      }}
-                      data-bet="0"
-                      className="w-full bg-primary hover:bg-primary/90"
-                    >
-                      Поставить 0
-                    </Button>
                   </div>
                 ) : finalBets[player.id] !== undefined ? (
                   <div className="text-center p-4 bg-primary/10 rounded-lg border border-primary/20">
