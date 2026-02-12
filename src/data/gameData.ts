@@ -3,7 +3,9 @@ export type Question = {
   answer: string;
   points: number;
   answered: boolean;
-  special?: 'cat' | 'hint' | 'double';
+  special?: 'cat' | 'hint' | 'double' | 'bonus';
+  image?: string;
+  hint?: string;
 };
 
 export type Category = {
@@ -22,6 +24,18 @@ export type GameLevel = 'easy' | 'medium' | 'hard';
 export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category[]; final: FinalQuestion[] }> = {
   easy: {
     round1: [
+      {
+        name: 'Эмодзи',
+        questions: [
+          { question: 'Угадай песню по эмодзи', answer: 'Зеленоглазое такси', points: 100, answered: false, image: 'https://cdn.poehali.dev/files/35a9508f-ca7e-44e1-a74a-805e135a593f.png' },
+          { question: 'Угадай песню по эмодзи', answer: 'Ветер с моря дул', points: 200, answered: false, image: 'https://cdn.poehali.dev/files/82559d48-084a-4b14-b382-8007c5aa4bbe.png' },
+          { question: 'Угадай песню по эмодзи', answer: 'Солнце Монако', points: 300, answered: false, image: 'https://cdn.poehali.dev/files/b18a1049-6486-4296-8547-c1f9a1179957.png' },
+          { question: 'Угадай песню по эмодзи', answer: 'Прованс', points: 400, answered: false, image: 'https://cdn.poehali.dev/files/ec73c64a-0776-48b1-bc46-c47b7427e660.png' },
+          { question: 'Угадай песню по эмодзи', answer: 'Знаешь ли ты', points: 500, answered: false, image: 'https://cdn.poehali.dev/files/f489bc31-87bf-4e63-81b0-93919aed6026.png' },
+          { question: 'Угадай песню по эмодзи', answer: 'Районы кварталы', points: 0, answered: false, image: 'https://cdn.poehali.dev/files/a7b64841-fa1f-4122-90c0-7a8b0c33b4a1.png', special: 'bonus' },
+          { question: 'Угадай песню по эмодзи', answer: 'Белые ночи', points: 0, answered: false, image: 'https://cdn.poehali.dev/files/e340afac-d3df-47dd-a43d-10869a4282e6.png', special: 'bonus' },
+        ],
+      },
       {
         name: 'Кино и мультфильмы',
         questions: [
@@ -157,6 +171,18 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
   medium: {
     round1: [
       {
+        name: 'Эмодзи',
+        questions: [
+          { question: 'Угадай песню по эмодзи', answer: 'Зеленоглазое такси', points: 100, answered: false, image: 'https://cdn.poehali.dev/files/35a9508f-ca7e-44e1-a74a-805e135a593f.png' },
+          { question: 'Угадай песню по эмодзи', answer: 'Ветер с моря дул', points: 200, answered: false, image: 'https://cdn.poehali.dev/files/82559d48-084a-4b14-b382-8007c5aa4bbe.png' },
+          { question: 'Угадай песню по эмодзи', answer: 'Солнце Монако', points: 300, answered: false, image: 'https://cdn.poehali.dev/files/b18a1049-6486-4296-8547-c1f9a1179957.png' },
+          { question: 'Угадай песню по эмодзи', answer: 'Прованс', points: 400, answered: false, image: 'https://cdn.poehali.dev/files/ec73c64a-0776-48b1-bc46-c47b7427e660.png' },
+          { question: 'Угадай песню по эмодзи', answer: 'Знаешь ли ты', points: 500, answered: false, image: 'https://cdn.poehali.dev/files/f489bc31-87bf-4e63-81b0-93919aed6026.png' },
+          { question: 'Угадай песню по эмодзи', answer: 'Районы кварталы', points: 0, answered: false, image: 'https://cdn.poehali.dev/files/a7b64841-fa1f-4122-90c0-7a8b0c33b4a1.png', special: 'bonus' },
+          { question: 'Угадай песню по эмодзи', answer: 'Белые ночи', points: 0, answered: false, image: 'https://cdn.poehali.dev/files/e340afac-d3df-47dd-a43d-10869a4282e6.png', special: 'bonus' },
+        ],
+      },
+      {
         name: 'Современная культура и тренды',
         questions: [
           { question: 'Что означает термин "флекс" в молодежном сленге?', answer: 'Показное хвастовство', points: 100, answered: false },
@@ -290,6 +316,18 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
   },
   hard: {
     round1: [
+      {
+        name: 'Эмодзи',
+        questions: [
+          { question: 'Угадай песню по эмодзи', answer: 'Зеленоглазое такси', points: 100, answered: false, image: 'https://cdn.poehali.dev/files/35a9508f-ca7e-44e1-a74a-805e135a593f.png' },
+          { question: 'Угадай песню по эмодзи', answer: 'Ветер с моря дул', points: 200, answered: false, image: 'https://cdn.poehali.dev/files/82559d48-084a-4b14-b382-8007c5aa4bbe.png' },
+          { question: 'Угадай песню по эмодзи', answer: 'Солнце Монако', points: 300, answered: false, image: 'https://cdn.poehali.dev/files/b18a1049-6486-4296-8547-c1f9a1179957.png' },
+          { question: 'Угадай песню по эмодзи', answer: 'Прованс', points: 400, answered: false, image: 'https://cdn.poehali.dev/files/ec73c64a-0776-48b1-bc46-c47b7427e660.png' },
+          { question: 'Угадай песню по эмодзи', answer: 'Знаешь ли ты', points: 500, answered: false, image: 'https://cdn.poehali.dev/files/f489bc31-87bf-4e63-81b0-93919aed6026.png' },
+          { question: 'Угадай песню по эмодзи', answer: 'Районы кварталы', points: 0, answered: false, image: 'https://cdn.poehali.dev/files/a7b64841-fa1f-4122-90c0-7a8b0c33b4a1.png', special: 'bonus' },
+          { question: 'Угадай песню по эмодзи', answer: 'Белые ночи', points: 0, answered: false, image: 'https://cdn.poehali.dev/files/e340afac-d3df-47dd-a43d-10869a4282e6.png', special: 'bonus' },
+        ],
+      },
       {
         name: 'Современные научные концепции',
         questions: [

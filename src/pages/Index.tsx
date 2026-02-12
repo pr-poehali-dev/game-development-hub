@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Slider } from '@/components/ui/slider';
 import Icon from '@/components/ui/icon';
-import { GAME_DATA, type GameLevel, type Category } from '@/data/gameData';
+import FortuneWheel from '@/components/ui/fortune-wheel';
+import { GAME_DATA, type GameLevel, type Category, type Question } from '@/data/gameData';
 import { addInteractivesToGame } from '@/utils/gameHelpers';
 
 type Player = {
@@ -36,6 +37,20 @@ export default function Index() {
   const [catTarget, setCatTarget] = useState<number | null>(null);
   const [hintShown, setHintShown] = useState(false);
   const [betInputs, setBetInputs] = useState<{ [key: number]: string }>({});
+  const [showWheel, setShowWheel] = useState(false);
+  const [bonusPoints, setBonusPoints] = useState<number | null>(null);
+  
+  const correctSoundRef = useRef<HTMLAudioElement | null>(null);
+  const wrongSoundRef = useRef<HTMLAudioElement | null>(null);
+  const bonusSoundRef = useRef<HTMLAudioElement | null>(null);
+  const wheelSoundRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    correctSoundRef.current = new Audio('https://cdn.poehali.dev/files/correct-sound.mp3');
+    wrongSoundRef.current = new Audio('https://cdn.poehali.dev/files/wrong-sound.mp3');
+    bonusSoundRef.current = new Audio('https://cdn.poehali.dev/files/bonus-sound.mp3');
+    wheelSoundRef.current = new Audio('https://cdn.poehali.dev/files/wheel-spin.mp3');
+  }, []);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -77,8 +92,17 @@ export default function Index() {
       setSelectedQuestion({ category: categoryIndex, question: questionIndex });
       setShowAnswer(false);
       setHintShown(false);
+      setBonusPoints(null);
 
       if (question.special === 'cat') {
+        return;
+      }
+
+      if (question.special === 'bonus') {
+        setShowWheel(true);
+        if (bonusSoundRef.current) {
+          bonusSoundRef.current.play();
+        }
         return;
       }
 
@@ -108,6 +132,8 @@ export default function Index() {
     setTimeLeft(30);
     setCatTarget(null);
     setHintShown(false);
+    setShowWheel(false);
+    setBonusPoints(null);
     nextPlayer();
   };
 
@@ -128,13 +154,24 @@ export default function Index() {
       const question = categories[selectedQuestion.category].questions[selectedQuestion.question];
       const newPlayers = [...players];
       const targetId = catTarget !== null ? catTarget : currentPlayer;
-      const points = question.special === 'double' ? question.points * 2 : question.points;
+      let points = question.points;
+      
+      if (question.special === 'bonus' && bonusPoints !== null) {
+        points = bonusPoints;
+      } else if (question.special === 'double') {
+        points = question.points * 2;
+      }
+      
       newPlayers[targetId].score += points;
       setPlayers(newPlayers);
 
       const newCategories = [...categories];
       newCategories[selectedQuestion.category].questions[selectedQuestion.question].answered = true;
       setCategories(newCategories);
+
+      if (correctSoundRef.current) {
+        correctSoundRef.current.play();
+      }
 
       closeQuestion();
       checkRoundEnd();
@@ -146,12 +183,22 @@ export default function Index() {
       const question = categories[selectedQuestion.category].questions[selectedQuestion.question];
       const newPlayers = [...players];
       const targetId = catTarget !== null ? catTarget : currentPlayer;
-      newPlayers[targetId].score -= question.points;
+      
+      let points = question.points;
+      if (question.special === 'bonus' && bonusPoints !== null) {
+        points = bonusPoints;
+      }
+      
+      newPlayers[targetId].score -= points;
       setPlayers(newPlayers);
 
       const newCategories = [...categories];
       newCategories[selectedQuestion.category].questions[selectedQuestion.question].answered = true;
       setCategories(newCategories);
+
+      if (wrongSoundRef.current) {
+        wrongSoundRef.current.play();
+      }
 
       closeQuestion();
       checkRoundEnd();
@@ -238,6 +285,20 @@ export default function Index() {
     setCatTarget(null);
     setHintShown(false);
     setBetInputs({});
+    setShowWheel(false);
+    setBonusPoints(null);
+  };
+
+  const handleWheelResult = (points: number) => {
+    setBonusPoints(points);
+    if (wheelSoundRef.current) {
+      wheelSoundRef.current.play();
+    }
+    setTimeout(() => {
+      setShowWheel(false);
+      setTimeLeft(30);
+      setTimerActive(true);
+    }, 1500);
   };
 
   if (gameState === 'setup') {
@@ -831,7 +892,7 @@ export default function Index() {
                   }`}
                 >
                   <div className="text-xl md:text-3xl font-bold text-white">
-                    {question.answered ? '✓' : question.points}
+                    {question.answered ? '✓' : (question.special === 'bonus' ? '🎲' : question.points)}
                   </div>
                 </Card>
               ))}
@@ -846,7 +907,9 @@ export default function Index() {
             <>
               <DialogHeader>
                 <DialogTitle className="text-3xl text-center text-primary">
-                  {categories[selectedQuestion.category].questions[selectedQuestion.question].points} баллов
+                  {categories[selectedQuestion.category].questions[selectedQuestion.question].special === 'bonus' 
+                    ? (bonusPoints ? `${bonusPoints} баллов` : 'Бонусный вопрос')
+                    : `${categories[selectedQuestion.category].questions[selectedQuestion.question].points} баллов`}
                 </DialogTitle>
               </DialogHeader>
 
@@ -876,8 +939,27 @@ export default function Index() {
                     </>
                   )}
 
-                {catTarget !== null || categories[selectedQuestion.category].questions[selectedQuestion.question].special !== 'cat' ? (
+                {categories[selectedQuestion.category].questions[selectedQuestion.question].special === 'bonus' && showWheel ? (
                   <>
+                    <Card className="p-4 bg-yellow-50 border-2 border-yellow-500">
+                      <p className="text-center text-xl font-bold text-yellow-700">🎲 Бонусный вопрос!</p>
+                      <p className="text-center text-sm text-yellow-600 mt-1">
+                        Крутите колесо фортуны, чтобы узнать номинал вопроса
+                      </p>
+                    </Card>
+                    <FortuneWheel onResult={handleWheelResult} />
+                  </>
+                ) : catTarget !== null || (categories[selectedQuestion.category].questions[selectedQuestion.question].special !== 'cat' && categories[selectedQuestion.category].questions[selectedQuestion.question].special !== 'bonus') || (categories[selectedQuestion.category].questions[selectedQuestion.question].special === 'bonus' && bonusPoints !== null) ? (
+                  <>
+                    {categories[selectedQuestion.category].questions[selectedQuestion.question].special === 'bonus' && bonusPoints !== null && (
+                      <Card className="p-4 bg-yellow-50 border-2 border-yellow-500">
+                        <p className="text-center text-xl font-bold text-yellow-700">🎲 Номинал: {bonusPoints} баллов</p>
+                        <p className="text-center text-sm text-yellow-600 mt-1">
+                          Правильный ответ = +{bonusPoints}, неправильный = -{bonusPoints}
+                        </p>
+                      </Card>
+                    )}
+
                     {categories[selectedQuestion.category].questions[selectedQuestion.question].special === 'hint' && (
                       <Card className="p-4 bg-green-50 border-2 border-green-500">
                         <p className="text-center text-lg font-bold text-green-700">💡 Подсказка найдена!</p>
@@ -919,11 +1001,21 @@ export default function Index() {
                       </Card>
                     )}
 
-                    <Card className="p-8 bg-secondary/30 border border-border/40">
-                      <p className="text-xl md:text-2xl text-center leading-relaxed">
-                        {categories[selectedQuestion.category].questions[selectedQuestion.question].question}
-                      </p>
-                    </Card>
+                    {categories[selectedQuestion.category].questions[selectedQuestion.question].image ? (
+                      <Card className="p-4 bg-secondary/30 border border-border/40">
+                        <img 
+                          src={categories[selectedQuestion.category].questions[selectedQuestion.question].image} 
+                          alt="Вопрос по эмодзи"
+                          className="w-full max-w-2xl mx-auto rounded-lg"
+                        />
+                      </Card>
+                    ) : (
+                      <Card className="p-8 bg-secondary/30 border border-border/40">
+                        <p className="text-xl md:text-2xl text-center leading-relaxed">
+                          {categories[selectedQuestion.category].questions[selectedQuestion.question].question}
+                        </p>
+                      </Card>
+                    )}
 
                     {showAnswer && (
                       <Card className="p-8 bg-primary/10 border-2 border-primary">
