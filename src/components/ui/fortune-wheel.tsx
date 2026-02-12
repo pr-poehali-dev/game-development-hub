@@ -37,39 +37,56 @@ export default function FortuneWheel({ onResult }: FortuneWheelProps) {
   return (
     <div className="flex flex-col items-center gap-6 py-6">
       <div className="relative w-80 h-80">
-        <div
-          className="absolute inset-0 rounded-full border-8 border-primary shadow-2xl bg-white"
+        <svg 
+          viewBox="0 0 400 400" 
+          className="w-full h-full"
           style={{
             transform: `rotate(${rotation}deg)`,
             transition: spinning ? 'transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99)' : 'none',
           }}
         >
           {POSSIBLE_POINTS.map((points, index) => {
-            const angle = (360 / POSSIBLE_POINTS.length) * index;
+            const segmentAngle = 360 / POSSIBLE_POINTS.length;
+            const startAngle = (index * segmentAngle - 90) * (Math.PI / 180);
+            const endAngle = ((index + 1) * segmentAngle - 90) * (Math.PI / 180);
+            const midAngle = (startAngle + endAngle) / 2;
+            
+            const x1 = 200 + 200 * Math.cos(startAngle);
+            const y1 = 200 + 200 * Math.sin(startAngle);
+            const x2 = 200 + 200 * Math.cos(endAngle);
+            const y2 = 200 + 200 * Math.sin(endAngle);
+            
+            const textX = 200 + 130 * Math.cos(midAngle);
+            const textY = 200 + 130 * Math.sin(midAngle);
+            
             const isEven = index % 2 === 0;
+            
             return (
-              <div
-                key={points}
-                className={`absolute inset-0 flex items-center justify-center ${
-                  isEven ? 'text-primary' : 'text-primary/70'
-                }`}
-                style={{
-                  transform: `rotate(${angle}deg)`,
-                  clipPath: `polygon(50% 50%, ${50 + 50 * Math.cos((angle - 18) * Math.PI / 180)}% ${50 + 50 * Math.sin((angle - 18) * Math.PI / 180)}%, ${50 + 50 * Math.cos((angle + 18) * Math.PI / 180)}% ${50 + 50 * Math.sin((angle + 18) * Math.PI / 180)}%)`,
-                }}
-              >
-                <div
-                  className="font-bold text-2xl"
+              <g key={points}>
+                <path
+                  d={`M 200 200 L ${x1} ${y1} A 200 200 0 0 1 ${x2} ${y2} Z`}
+                  fill={isEven ? '#8B5CF6' : '#A78BFA'}
+                  stroke="#fff"
+                  strokeWidth="2"
+                />
+                <text
+                  x={textX}
+                  y={textY}
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  className="font-bold text-2xl fill-white"
                   style={{
-                    transform: `rotate(-${angle}deg) translateY(-100px)`,
+                    fontSize: '28px',
+                    fontWeight: 'bold'
                   }}
                 >
                   {points}
-                </div>
-              </div>
+                </text>
+              </g>
             );
           })}
-        </div>
+          <circle cx="200" cy="200" r="195" fill="none" stroke="#8B5CF6" strokeWidth="10"/>
+        </svg>
 
         <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-4 w-0 h-0 border-l-[20px] border-r-[20px] border-t-[40px] border-l-transparent border-r-transparent border-t-red-500 z-10" />
       </div>
