@@ -1005,8 +1005,8 @@ export default function Index() {
                       <Card className="p-4 bg-secondary/30 border border-border/40">
                         <img 
                           src={categories[selectedQuestion.category].questions[selectedQuestion.question].image} 
-                          alt="Вопрос по эмодзи"
-                          className="w-full max-w-2xl mx-auto rounded-lg"
+                          alt="Вопрос с изображением"
+                          className="w-full max-w-md max-h-96 mx-auto rounded-lg object-contain"
                         />
                       </Card>
                     ) : (
