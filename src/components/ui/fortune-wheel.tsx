@@ -21,9 +21,11 @@ export default function FortuneWheel({ onResult }: FortuneWheelProps) {
     const randomIndex = Math.floor(Math.random() * POSSIBLE_POINTS.length);
     const selectedPoints = POSSIBLE_POINTS[randomIndex];
 
-    const baseRotation = 360 * 5;
     const segmentAngle = 360 / POSSIBLE_POINTS.length;
-    const targetRotation = baseRotation + (randomIndex * segmentAngle) + (segmentAngle / 2);
+    const baseRotation = 360 * 5;
+    
+    const targetSegmentCenter = randomIndex * segmentAngle + (segmentAngle / 2);
+    const targetRotation = baseRotation - targetSegmentCenter;
 
     setRotation(targetRotation);
 
