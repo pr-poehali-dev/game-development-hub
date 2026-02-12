@@ -3,14 +3,20 @@ import { Button } from '@/components/ui/button';
 
 interface FortuneWheelProps {
   onResult: (points: number) => void;
+  pointsRange?: 'round1' | 'round2';
 }
 
-const POSSIBLE_POINTS = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+const POINTS_RANGES = {
+  round1: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000],
+  round2: [300, 400, 500, 600, 700, 800, 900, 1000, 1200, 1500],
+};
 
-export default function FortuneWheel({ onResult }: FortuneWheelProps) {
+export default function FortuneWheel({ onResult, pointsRange = 'round1' }: FortuneWheelProps) {
   const [spinning, setSpinning] = useState(false);
   const [rotation, setRotation] = useState(0);
   const [result, setResult] = useState<number | null>(null);
+
+  const POSSIBLE_POINTS = POINTS_RANGES[pointsRange];
 
   const spinWheel = () => {
     if (spinning) return;

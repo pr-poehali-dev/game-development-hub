@@ -99,6 +99,18 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
     ],
     round2: [
       {
+        name: 'Угадай кто',
+        questions: [
+          { question: 'Кто на фото?', answer: 'Светлана Ходченкова', points: 200, answered: false, image: 'https://cdn.poehali.dev/files/c71a3a89-9a2d-4a3e-95b4-d5b1eca3f558.png' },
+          { question: 'Кто на фото?', answer: 'Владимир Путин', points: 400, answered: false, image: 'https://cdn.poehali.dev/files/5750b59a-fde4-4dfc-ad4d-ecbe961c0d40.png' },
+          { question: 'Кто на фото?', answer: 'Стас Михайлов', points: 600, answered: false, image: 'https://cdn.poehali.dev/files/dc7aad72-8e0e-4c50-b0af-baa720fbacaa.png' },
+          { question: 'Кто на фото?', answer: 'Константин Хабенский', points: 800, answered: false, image: 'https://cdn.poehali.dev/files/8d2ee602-c1b3-4cf3-88b5-e138de2bef61.png' },
+          { question: 'Кто на фото?', answer: 'Николай Басков', points: 1000, answered: false, image: 'https://cdn.poehali.dev/files/a51ef547-6840-4dd1-940b-df4784427108.png' },
+          { question: 'Кто на фото?', answer: 'Филипп Киркоров', points: 0, answered: false, image: 'https://cdn.poehali.dev/files/e8e74ba5-f702-4c8b-b244-d5baa14a6735.png', special: 'bonus' },
+          { question: 'Кто на фото?', answer: 'Сергей Безруков', points: 0, answered: false, image: 'https://cdn.poehali.dev/files/3e178db2-8a74-4882-b32a-589323e2748f.png', special: 'bonus' },
+        ],
+      },
+      {
         name: 'Музыка',
         questions: [
           { question: 'На каком инструменте виртуозно играл Паганини?', answer: 'Скрипка', points: 200, answered: false },
@@ -244,6 +256,18 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
       },
     ],
     round2: [
+      {
+        name: 'Угадай кто',
+        questions: [
+          { question: 'Кто на фото?', answer: 'Светлана Ходченкова', points: 200, answered: false, image: 'https://cdn.poehali.dev/files/c71a3a89-9a2d-4a3e-95b4-d5b1eca3f558.png' },
+          { question: 'Кто на фото?', answer: 'Владимир Путин', points: 400, answered: false, image: 'https://cdn.poehali.dev/files/5750b59a-fde4-4dfc-ad4d-ecbe961c0d40.png' },
+          { question: 'Кто на фото?', answer: 'Стас Михайлов', points: 600, answered: false, image: 'https://cdn.poehali.dev/files/dc7aad72-8e0e-4c50-b0af-baa720fbacaa.png' },
+          { question: 'Кто на фото?', answer: 'Константин Хабенский', points: 800, answered: false, image: 'https://cdn.poehali.dev/files/8d2ee602-c1b3-4cf3-88b5-e138de2bef61.png' },
+          { question: 'Кто на фото?', answer: 'Николай Басков', points: 1000, answered: false, image: 'https://cdn.poehali.dev/files/a51ef547-6840-4dd1-940b-df4784427108.png' },
+          { question: 'Кто на фото?', answer: 'Филипп Киркоров', points: 0, answered: false, image: 'https://cdn.poehali.dev/files/e8e74ba5-f702-4c8b-b244-d5baa14a6735.png', special: 'bonus' },
+          { question: 'Кто на фото?', answer: 'Сергей Безруков', points: 0, answered: false, image: 'https://cdn.poehali.dev/files/3e178db2-8a74-4882-b32a-589323e2748f.png', special: 'bonus' },
+        ],
+      },
       {
         name: 'Научные понятия',
         questions: [
@@ -418,6 +442,90 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
           { question: 'Кто автор "Бледного огня"?', answer: 'Владимир Набоков', points: 600, answered: false },
           { question: 'Как называется роман Умберто Эко о монастырской библиотеке?', answer: '"Имя розы"', points: 800, answered: false },
           { question: 'Кто написал "Гаргантюа и Пантагрюэль"?', answer: 'Франсуа Рабле', points: 1000, answered: false },
+        ],
+      },
+      {
+        name: 'Макроэкономика',
+        questions: [
+          { question: 'Что такое "кривая Лаффера"?', answer: 'Графическая зависимость налоговых поступлений от налоговой ставки', points: 200, answered: false },
+          { question: 'Кто автор "Богатства народов"?', answer: 'Адам Смит', points: 400, answered: false },
+          { question: 'Что такое "паритет покупательной способности"?', answer: 'Сравнение валют через стоимость корзины товаров', points: 600, answered: false, special: 'cat' },
+          { question: 'Как называется экономическая школа, отрицающая государственное вмешательство?', answer: 'Австрийская школа', points: 800, answered: false },
+          { question: 'Что такое "деривативы" в финансах?', answer: 'Финансовые инструменты, основанные на других активах', points: 1000, answered: false },
+        ],
+      },
+      {
+        name: 'Современное искусство',
+        questions: [
+          { question: 'Кто создал "Фонтан" - писсуар как произведение искусства?', answer: 'Марсель Дюшан', points: 200, answered: false },
+          { question: 'Как называется художественное направление, к которому относится Энди Уорхол?', answer: 'Поп-арт', points: 400, answered: false },
+          { question: 'Кто автор инсталляции "Абсолютная пустота"?', answer: 'Яёи Кусама', points: 600, answered: false },
+          { question: 'Какой художник известен "живыми картинами" из людей?', answer: 'Сэнди Скогланд', points: 800, answered: false },
+          { question: 'Кто создал перформанс "Ритм 0"?', answer: 'Марина Абрамович', points: 1000, answered: false, special: 'cat' },
+        ],
+      },
+      {
+        name: 'Научные открытия',
+        questions: [
+          { question: 'Кто открыл структуру ДНК?', answer: 'Джеймс Уотсон и Фрэнсис Крик', points: 200, answered: false },
+          { question: 'Что открыл Майкл Фарадей?', answer: 'Электромагнитную индукцию', points: 400, answered: false },
+          { question: 'Кто сформулировал законы наследственности?', answer: 'Грегор Мендель', points: 600, answered: false },
+          { question: 'Какой ученый открыл радиоактивность?', answer: 'Анри Беккерель', points: 800, answered: false },
+          { question: 'Кто доказал, что Земля вращается вокруг Солнца?', answer: 'Николай Коперник', points: 1000, answered: false },
+        ],
+      },
+    ],
+    round2: [
+      {
+        name: 'Угадай кто',
+        questions: [
+          { question: 'Кто на фото?', answer: 'Светлана Ходченкова', points: 200, answered: false, image: 'https://cdn.poehali.dev/files/c71a3a89-9a2d-4a3e-95b4-d5b1eca3f558.png' },
+          { question: 'Кто на фото?', answer: 'Владимир Путин', points: 400, answered: false, image: 'https://cdn.poehali.dev/files/5750b59a-fde4-4dfc-ad4d-ecbe961c0d40.png' },
+          { question: 'Кто на фото?', answer: 'Стас Михайлов', points: 600, answered: false, image: 'https://cdn.poehali.dev/files/dc7aad72-8e0e-4c50-b0af-baa720fbacaa.png' },
+          { question: 'Кто на фото?', answer: 'Константин Хабенский', points: 800, answered: false, image: 'https://cdn.poehali.dev/files/8d2ee602-c1b3-4cf3-88b5-e138de2bef61.png' },
+          { question: 'Кто на фото?', answer: 'Николай Басков', points: 1000, answered: false, image: 'https://cdn.poehali.dev/files/a51ef547-6840-4dd1-940b-df4784427108.png' },
+          { question: 'Кто на фото?', answer: 'Филипп Киркоров', points: 0, answered: false, image: 'https://cdn.poehali.dev/files/e8e74ba5-f702-4c8b-b244-d5baa14a6735.png', special: 'bonus' },
+          { question: 'Кто на фото?', answer: 'Сергей Безруков', points: 0, answered: false, image: 'https://cdn.poehali.dev/files/3e178db2-8a74-4882-b32a-589323e2748f.png', special: 'bonus' },
+        ],
+      },
+      {
+        name: 'Современные научные концепции',
+        questions: [
+          { question: 'Что такое "эффект Даннинга-Крюгера"?', answer: 'Когнитивное искажение, когда некомпетентные люди переоценивают свои способности', points: 200, answered: false },
+          { question: 'Как называется теория, согласно которой наблюдение влияет на наблюдаемое?', answer: 'Эффект наблюдателя в квантовой физике', points: 400, answered: false },
+          { question: 'Что такое "темная материя"?', answer: 'Гипотетическая форма материи, не испускающая электромагнитного излучения', points: 600, answered: false, special: 'cat' },
+          { question: 'Как называется процесс, при котором ИИ создает новые данные на основе обучения?', answer: 'Генеративное моделирование', points: 800, answered: false },
+          { question: 'Что такое "квантовая запутанность"?', answer: 'Квантовомеханическое явление, при котором состояния частиц связаны', points: 1000, answered: false },
+        ],
+      },
+      {
+        name: 'Артхаусное кино и режиссура',
+        questions: [
+          { question: 'Кто снял фильм "Сталкер"?', answer: 'Андрей Тарковский', points: 200, answered: false },
+          { question: 'Какой режиссер известен использованием "трэвеллинга" в длинных планах?', answer: 'Микеланджело Антониони', points: 400, answered: false },
+          { question: 'Фильм какого режиссера выиграл "Золотую пальмовую ветвь" в 2019 году?', answer: 'Бон Джун Хо - "Паразиты"', points: 600, answered: false },
+          { question: 'Кто режиссер трилогии "Апокалипсис"?', answer: 'Фрэнсис Форд Коппола - "Апокалипсис сегодня"', points: 800, answered: false },
+          { question: 'Какой фильм Дэвида Линча считается образцом сюрреализма?', answer: '"Малхолланд Драйв"', points: 1000, answered: false, special: 'cat' },
+        ],
+      },
+      {
+        name: 'Политическая география',
+        questions: [
+          { question: 'Какая страна имеет эксклав Калининградскую область?', answer: 'Россия', points: 200, answered: false },
+          { question: 'Сколько стран входят в Шенгенскую зону?', answer: '26', points: 400, answered: false },
+          { question: 'Какой город является административной столицей ЮАР?', answer: 'Претория', points: 600, answered: false },
+          { question: 'На территории скольких стран протекает Амазонка?', answer: '9 стран', points: 800, answered: false },
+          { question: 'Какая страна имеет самую длинную береговую линию?', answer: 'Канада', points: 1000, answered: false },
+        ],
+      },
+      {
+        name: 'Философия и мышление',
+        questions: [
+          { question: 'Кто автор "Критики чистого разума"?', answer: 'Иммануил Кант', points: 200, answered: false },
+          { question: 'Как называется философское направление, утверждающее абсурдность бытия?', answer: 'Экзистенциализм', points: 400, answered: false },
+          { question: 'Какой античный философ учил в саду?', answer: 'Эпикур', points: 600, answered: false },
+          { question: 'Как называется философская дисциплина о ценностях?', answer: 'Аксиология', points: 800, answered: false, special: 'cat' },
+          { question: 'Кто автор "Так говорил Заратустра"?', answer: 'Фридрих Ницше', points: 1000, answered: false },
         ],
       },
       {

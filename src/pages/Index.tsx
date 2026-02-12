@@ -947,7 +947,7 @@ export default function Index() {
                         Крутите колесо фортуны, чтобы узнать номинал вопроса
                       </p>
                     </Card>
-                    <FortuneWheel onResult={handleWheelResult} />
+                    <FortuneWheel onResult={handleWheelResult} pointsRange={gameState === 'round1' ? 'round1' : 'round2'} />
                   </>
                 ) : catTarget !== null || (categories[selectedQuestion.category].questions[selectedQuestion.question].special !== 'cat' && categories[selectedQuestion.category].questions[selectedQuestion.question].special !== 'bonus') || (categories[selectedQuestion.category].questions[selectedQuestion.question].special === 'bonus' && bonusPoints !== null) ? (
                   <>
