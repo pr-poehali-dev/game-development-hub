@@ -875,27 +875,29 @@ export default function Index() {
           ))}
         </div>
 
-        <div className="grid grid-cols-6 gap-2">
+        <div className="space-y-2">
           {categories.map((category, catIndex) => (
-            <div key={catIndex} className="space-y-2">
-              <Card className="p-3 bg-primary text-white text-center border border-primary">
-                <h2 className="font-bold text-xs md:text-sm leading-tight">{category.name}</h2>
+            <div key={catIndex} className="flex gap-2 items-stretch">
+              <Card className="p-3 bg-primary text-white flex items-center justify-center border border-primary min-w-[140px] md:min-w-[180px] shrink-0">
+                <h2 className="font-bold text-xs md:text-sm leading-tight text-center">{category.name}</h2>
               </Card>
-              {category.questions.map((question, qIndex) => (
-                <Card
-                  key={qIndex}
-                  onClick={() => selectQuestion(catIndex, qIndex)}
-                  className={`p-4 md:p-6 text-center cursor-pointer transition-all ${
-                    question.answered
-                      ? 'bg-muted/50 opacity-40 cursor-not-allowed border border-border/40'
-                      : 'bg-accent hover:bg-accent/80 hover:scale-105 shadow-sm hover:shadow-md border border-accent'
-                  }`}
-                >
-                  <div className="text-xl md:text-3xl font-bold text-white">
-                    {question.answered ? '✓' : (question.special === 'bonus' ? '🎲' : question.points)}
-                  </div>
-                </Card>
-              ))}
+              <div className="flex gap-2 flex-1">
+                {category.questions.map((question, qIndex) => (
+                  <Card
+                    key={qIndex}
+                    onClick={() => selectQuestion(catIndex, qIndex)}
+                    className={`p-4 md:p-6 text-center cursor-pointer transition-all flex-1 flex items-center justify-center ${
+                      question.answered
+                        ? 'bg-muted/50 opacity-40 cursor-not-allowed border border-border/40'
+                        : 'bg-accent hover:bg-accent/80 hover:scale-105 shadow-sm hover:shadow-md border border-accent'
+                    }`}
+                  >
+                    <div className="text-xl md:text-3xl font-bold text-white">
+                      {question.answered ? '✓' : (question.special === 'bonus' ? '🎲' : question.points)}
+                    </div>
+                  </Card>
+                ))}
+              </div>
             </div>
           ))}
         </div>
