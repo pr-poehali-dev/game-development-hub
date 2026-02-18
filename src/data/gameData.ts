@@ -49,19 +49,19 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
       {
         name: 'Животные',
         questions: [
-          { question: 'Какое животное изображено на логотипе браузера Firefox?', answer: 'Красная лиса', points: 100, answered: false },
-          { question: 'Какая птица является символом мудрости?', answer: 'Сова', points: 200, answered: false },
+          { question: 'Какому животному принадлежат эти уши?', answer: 'Кошка', points: 100, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/e9eede2b-e5dc-43bd-a7db-c7aa6e0c376c.jpg' },
+          { question: 'Какое животное имеет такой узор на теле?', answer: 'Зебра', points: 200, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/8ba193b9-2c59-4d23-b731-bd82575d5300.jpg' },
           { question: 'Какое животное изображено на картинке?', answer: 'Гепард — самое быстрое животное на суше', points: 300, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/b041f8b8-7087-4bb3-b2da-44c1cd60480d.jpg' },
-          { question: 'Какое морское млекопитающее поет песни?', answer: 'Горбатый кит', points: 400, answered: false },
+          { question: 'Чей это хвостик-крючок?', answer: 'Свинья', points: 400, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/c901a4a6-a757-4088-891c-025ac3e08d0f.jpg' },
           { question: 'Какое животное изображено на картинке? Чем оно знаменито?', answer: 'Хамелеон — может менять цвет кожи', points: 500, answered: false, special: 'cat', image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/4c3d4fc4-e16c-40b5-8910-f07598cc0a2b.jpg' },
         ],
       },
       {
         name: 'География',
         questions: [
-          { question: 'Какой город называют "Северной Венецией"?', answer: 'Санкт-Петербург', points: 100, answered: false },
+          { question: 'Угадай достопримечательность по силуэту', answer: 'Эйфелева башня (Париж)', points: 100, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/ddcc9d68-8f46-4d82-94fc-c480c5ddeb53.jpg' },
           { question: 'На территории скольких стран находятся Альпы?', answer: '8 стран', points: 200, answered: false },
-          { question: 'Какой водопад самый широкий в мире?', answer: 'Кон, Камбоджа', points: 300, answered: false },
+          { question: 'Угадай достопримечательность по силуэту', answer: 'Статуя Свободы (Нью-Йорк)', points: 300, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/5e8dae45-58fb-423a-9cf0-1480019e0539.jpg' },
           { question: 'Какая пустыня самая холодная?', answer: 'Антарктическая пустыня', points: 400, answered: false },
           { question: 'Какой пролив соединяет Тихий и Атлантический океаны?', answer: 'Магелланов пролив', points: 500, answered: false },
         ],
@@ -79,7 +79,7 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
       {
         name: 'Спорт и игры',
         questions: [
-          { question: 'Сколько игроков в баскетбольной команде на площадке?', answer: '5', points: 100, answered: false },
+          { question: 'Поверхность какого спортивного мяча изображена крупным планом?', answer: 'Баскетбольный мяч', points: 100, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/15746e29-3b67-4fed-87c2-c8d4ac6ea434.jpg' },
           { question: 'В какой стране впервые провели Олимпийские игры?', answer: 'Греция', points: 200, answered: false },
           { question: 'Какой вид спорта включает в себя "парантеллу"?', answer: 'Фигурное катание', points: 300, answered: false },
           { question: 'Какой шахматный ход самый короткий?', answer: 'Детский мат', points: 400, answered: false },
@@ -94,6 +94,16 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
           { question: 'Как звали кота в "Кота в сапогах"?', answer: 'Кот или просто Кот в сапогах', points: 300, answered: false },
           { question: 'В какой сказке есть "избушка на курьих ножках"?', answer: 'Баба Яга в русских сказках', points: 400, answered: false },
           { question: 'Кто автор "Винни-Пуха"?', answer: 'Алан Милн', points: 500, answered: false, special: 'cat' },
+        ],
+      },
+      {
+        name: 'Что производит?',
+        questions: [
+          { question: 'Что производит данный завод-резидент?', answer: 'ООО "Соллерс Алабуга" — производство легких коммерческих автомобилей', points: 100, answered: false, image: 'https://cdn.poehali.dev/files/c476991c-c95d-410d-a05e-b20209e3af8d.jpg' },
+          { question: 'Что производит данный завод-резидент?', answer: 'ООО "Елабужский аккумуляторный завод" — производство автомобильных аккумуляторных батарей', points: 200, answered: false, image: 'https://cdn.poehali.dev/files/90837124-6986-443d-9a02-deda9af22a40.jpg' },
+          { question: 'Что производит данный завод-резидент?', answer: 'ООО "Белая Дача Алабуга" — производство салатной и овощной продукции', points: 300, answered: false, image: 'https://cdn.poehali.dev/files/281d327c-b335-4dce-a75f-3064b2f40ffb.jpg' },
+          { question: 'Что производит данный завод-резидент?', answer: 'ООО "Алабуга-Волокно" — производство углеволокна и ПАН-прекурсора', points: 400, answered: false, image: 'https://cdn.poehali.dev/files/cd231dad-ed69-48f2-a1e5-112d14d0360c.jpg' },
+          { question: 'Что производит данный завод-резидент?', answer: 'ООО "Кастамону Интегрейтед Вуд Индастри" — производство плит MDF, HDF и ламинированных напольных покрытий', points: 500, answered: false, image: 'https://cdn.poehali.dev/files/5f532347-73d9-4fbb-9f37-3859c4ab21e5.jpg' },
         ],
       },
     ],
@@ -153,11 +163,11 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
       {
         name: 'Искусство',
         questions: [
-          { question: 'Кто написал эту картину?', answer: 'Илья Репин — «Бурлаки на Волге»', points: 200, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/65cdd3dc-259c-420b-a595-a03ad1d32e7b.jpg' },
+          { question: 'В каком музее хранится "Джоконда"?', answer: 'Лувр', points: 200, answered: false },
           { question: 'Как называется техника рисования по сырой штукатурке?', answer: 'Фреска', points: 400, answered: false },
           { question: 'Какой художник отрезал себе ухо?', answer: 'Винсент Ван Гог', points: 600, answered: false },
           { question: 'Что такое палитра?', answer: 'Доска для смешивания красок', points: 800, answered: false },
-          { question: 'В каком музее хранится "Джоконда"?', answer: 'Лувр', points: 1000, answered: false, special: 'cat' },
+          { question: 'Кто написал эту картину?', answer: 'Илья Репин — «Бурлаки на Волге»', points: 1000, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/65cdd3dc-259c-420b-a595-a03ad1d32e7b.jpg', special: 'cat' },
         ],
       },
       {
@@ -209,7 +219,7 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
         name: 'Современная культура и тренды',
         questions: [
           { question: 'Что означает термин "флекс" в молодежном сленге?', answer: 'Показное хвастовство', points: 100, answered: false },
-          { question: 'Как называется явление, когда алгоритмы создают "информационные пузыри"?', answer: 'Фильтрующий пузырь', points: 200, answered: false },
+          { question: 'Что это за орган показан крупным планом?', answer: 'Человеческий глаз (радужная оболочка)', points: 200, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/52b0d5ca-11af-448e-bae9-90bab0893924.jpg' },
           { question: 'Что такое "криптовалюта"?', answer: 'Цифровая валюта на основе блокчейна', points: 300, answered: false, special: 'cat' },
           { question: 'Как называется поколение, родившееся между 1997 и 2012 годами?', answer: 'Поколение Z', points: 400, answered: false },
           { question: 'Что означает аббревиатура FIRE в финансовой независимости?', answer: 'Financial Independence, Retire Early', points: 500, answered: false },
@@ -228,7 +238,7 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
       {
         name: 'География мира',
         questions: [
-          { question: 'Какая страна состоит из более чем 17,000 островов?', answer: 'Индонезия', points: 100, answered: false },
+          { question: 'Угадай достопримечательность по силуэту', answer: 'Сиднейский оперный театр (Австралия)', points: 100, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/568cf664-a0af-40c9-96f3-7ed2d616345b.jpg' },
           { question: 'Какой город является самой высокой столицей в мире?', answer: 'Ла-Пас, Боливия', points: 200, answered: false },
           { question: 'Какая река протекает через 10 стран Европы?', answer: 'Дунай', points: 300, answered: false },
           { question: 'На каком материке нет рек?', answer: 'Антарктида', points: 400, answered: false },
@@ -238,9 +248,9 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
       {
         name: 'Биология и природа',
         questions: [
-          { question: 'Какое животное имеет три сердца?', answer: 'Осьминог', points: 100, answered: false },
-          { question: 'Как называется самый большой цветок в мире?', answer: 'Раффлезия', points: 200, answered: false },
-          { question: 'Какое млекопитающее умеет летать?', answer: 'Летучая мышь', points: 300, answered: false },
+          { question: 'Какому морскому существу принадлежат эти присоски?', answer: 'Осьминог', points: 100, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/a0649b72-037e-4810-9f68-08b94afe0d3d.jpg' },
+          { question: 'Какой фрукт показан в разрезе?', answer: 'Киви', points: 200, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/b1f00c39-9a0f-4d55-95b1-3e24181d105c.jpg' },
+          { question: 'Какому животному принадлежат эти иголки?', answer: 'Ёж', points: 300, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/e19e0dac-2537-470a-89ad-b97a10ac4c8c.jpg' },
           { question: 'Как называется процесс превращения гусеницы в бабочку?', answer: 'Метаморфоз', points: 400, answered: false },
           { question: 'Какое растение является символом Ирландии?', answer: 'Трилистник', points: 500, answered: false },
         ],
@@ -263,6 +273,16 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
           { question: 'Кто написал "Декларацию независимости США"?', answer: 'Томас Джефферсон', points: 300, answered: false },
           { question: 'Какой русский князь принял христианство?', answer: 'Владимир Красно Солнышко', points: 400, answered: false },
           { question: 'Кто изобрел печатный станок?', answer: 'Иоганн Гутенберг', points: 500, answered: false },
+        ],
+      },
+      {
+        name: 'Что производит?',
+        questions: [
+          { question: 'Что производит данный завод-резидент?', answer: 'ООО "Соллерс Алабуга" — производство легких коммерческих автомобилей', points: 100, answered: false, image: 'https://cdn.poehali.dev/files/c476991c-c95d-410d-a05e-b20209e3af8d.jpg' },
+          { question: 'Что производит данный завод-резидент?', answer: 'ООО "Елабужский аккумуляторный завод" — производство автомобильных аккумуляторных батарей', points: 200, answered: false, image: 'https://cdn.poehali.dev/files/90837124-6986-443d-9a02-deda9af22a40.jpg' },
+          { question: 'Что производит данный завод-резидент?', answer: 'ООО "Белая Дача Алабуга" — производство салатной и овощной продукции', points: 300, answered: false, image: 'https://cdn.poehali.dev/files/281d327c-b335-4dce-a75f-3064b2f40ffb.jpg' },
+          { question: 'Что производит данный завод-резидент?', answer: 'ООО "Алабуга-Волокно" — производство углеволокна и ПАН-прекурсора', points: 400, answered: false, image: 'https://cdn.poehali.dev/files/cd231dad-ed69-48f2-a1e5-112d14d0360c.jpg' },
+          { question: 'Что производит данный завод-резидент?', answer: 'ООО "Кастамону Интегрейтед Вуд Индастри" — производство плит MDF, HDF и ламинированных напольных покрытий', points: 500, answered: false, image: 'https://cdn.poehali.dev/files/5f532347-73d9-4fbb-9f37-3859c4ab21e5.jpg' },
         ],
       },
     ],
@@ -378,7 +398,7 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
         name: 'Современные научные концепции',
         questions: [
           { question: 'Что такое "эффект Даннинга-Крюгера"?', answer: 'Когнитивное искажение, когда некомпетентные люди переоценивают свои способности', points: 100, answered: false },
-          { question: 'Как называется теория, согласно которой наблюдение влияет на наблюдаемое?', answer: 'Эффект наблюдателя в квантовой физике', points: 200, answered: false },
+          { question: 'Какая природная структура с гексагональной симметрией показана на фото?', answer: 'Снежинка — кристалл льда', points: 200, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/d64303f6-4218-44c9-bb9f-de49fa356716.jpg' },
           { question: 'Что такое "темная материя"?', answer: 'Гипотетическая форма материи, не испускающая электромагнитного излучения', points: 300, answered: false, special: 'cat' },
           { question: 'Как называется процесс, при котором ИИ создает новые данные на основе обучения?', answer: 'Генеративное моделирование', points: 400, answered: false },
           { question: 'Что такое "квантовая запутанность"?', answer: 'Квантовомеханическое явление, при котором состояния частиц связаны', points: 500, answered: false },
@@ -388,7 +408,7 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
         name: 'Артхаусное кино и режиссура',
         questions: [
           { question: 'Кто снял фильм "Сталкер"?', answer: 'Андрей Тарковский', points: 100, answered: false },
-          { question: 'Какой режиссер известен использованием "трэвеллинга" в длинных планах?', answer: 'Микеланджело Антониони', points: 200, answered: false },
+          { question: 'Чей это перо с характерным «глазком»?', answer: 'Павлин', points: 200, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/ed6ff4fa-d62d-414a-88c4-4c98177add33.jpg' },
           { question: 'Фильм какого режиссера выиграл "Золотую пальмовую ветвь" в 2019 году?', answer: 'Бон Джун Хо - "Паразиты"', points: 300, answered: false },
           { question: 'Кто режиссер трилогии "Апокалипсис"?', answer: 'Фрэнсис Форд Коппола - "Апокалипсис сегодня"', points: 400, answered: false },
           { question: 'Какой фильм Дэвида Линча считается образцом сюрреализма?', answer: '"Малхолланд Драйв"', points: 500, answered: false, special: 'cat' },
@@ -398,7 +418,7 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
         name: 'Политическая география',
         questions: [
           { question: 'Какая страна имеет эксклав Калининградскую область?', answer: 'Россия', points: 100, answered: false },
-          { question: 'Сколько стран входят в Шенгенскую зону?', answer: '26', points: 200, answered: false },
+          { question: 'Какому животному принадлежит эта текстура кожи?', answer: 'Слон', points: 200, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/0272478a-2d96-4e07-8986-4ccf9bbe729a.jpg' },
           { question: 'Какой город является административной столицей ЮАР?', answer: 'Претория', points: 300, answered: false },
           { question: 'На территории скольких стран протекает Амазонка?', answer: '9 стран', points: 400, answered: false },
           { question: 'Какая страна имеет самую длинную береговую линию?', answer: 'Канада', points: 500, answered: false },
@@ -408,7 +428,7 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
         name: 'Биохимия и генетика',
         questions: [
           { question: 'Что расшифровывает аббревиатура ДНК?', answer: 'Дезоксирибонуклеиновая кислота', points: 100, answered: false },
-          { question: 'Как называется процесс копирования ДНК?', answer: 'Репликация', points: 200, answered: false },
+          { question: 'Какому насекомому принадлежит это крыло при макросъёмке?', answer: 'Стрекоза', points: 200, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/795d94b6-0159-489f-bfa5-36dd1d22dce0.jpg' },
           { question: 'Что такое CRISPR-Cas9?', answer: 'Технология редактирования генома', points: 300, answered: false },
           { question: 'Какой орган человека производит инсулин?', answer: 'Поджелудочная железа', points: 400, answered: false },
           { question: 'Что такое митохондриальная Ева?', answer: 'Последний общий предок всех людей по материнской линии', points: 500, answered: false },
@@ -418,7 +438,7 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
         name: 'Кибернетика и алгоритмы',
         questions: [
           { question: 'Что такое "машинное обучение без учителя"?', answer: 'Алгоритмы, находящие паттерны в неразмеченных данных', points: 100, answered: false },
-          { question: 'Как называется задача о коммивояжере в теории графов?', answer: 'Задача нахождения кратчайшего пути', points: 200, answered: false },
+          { question: 'Какому животному принадлежит этот панцирь?', answer: 'Черепаха', points: 200, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/223dea2f-b8dd-4b4b-8cfe-b5cf5e9d8022.jpg' },
           { question: 'Что такое "нейронная сеть с обратным распространением ошибки"?', answer: 'Алгоритм обучения нейросетей', points: 300, answered: false },
           { question: 'Как называется парадигма программирования, основанная на объектах?', answer: 'Объектно-ориентированное программирование', points: 400, answered: false },
           { question: 'Какой алгоритм лежит в основе Bitcoin?', answer: 'Proof-of-Work', points: 500, answered: false, special: 'cat' },
@@ -428,7 +448,186 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
         name: 'История философии',
         questions: [
           { question: 'Кто сказал "Я мыслю, следовательно, существую"?', answer: 'Рене Декарт', points: 100, answered: false },
-          { question: 'Какой философ основал школу стоицизма?', answer: 'Зенон Китийский', points: 200, answered: false },
+          { question: 'Какому животному принадлежит этот полосатый хвост?', answer: 'Красная панда (малая панда)', points: 200, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/1256b946-7272-4153-8ecc-718ab02fad48.jpg' },
+          { question: 'Кто автор работы "Так говорил Заратустра"?', answer: 'Фридрих Ницше', points: 300, answered: false },
+          { question: 'Как называется главный труд Иммануила Канта?', answer: '"Критика чистого разума"', points: 400, answered: false },
+          { question: 'Кто из философов был учителем Александра Македонского?', answer: 'Аристотель', points: 500, answered: false },
+        ],
+      },
+      {
+        name: 'Что производит?',
+        questions: [
+          { question: 'Что производит данный завод-резидент?', answer: 'ООО "Соллерс Алабуга" — производство легких коммерческих автомобилей', points: 100, answered: false, image: 'https://cdn.poehali.dev/files/c476991c-c95d-410d-a05e-b20209e3af8d.jpg' },
+          { question: 'Что производит данный завод-резидент?', answer: 'ООО "Елабужский аккумуляторный завод" — производство автомобильных аккумуляторных батарей', points: 200, answered: false, image: 'https://cdn.poehali.dev/files/90837124-6986-443d-9a02-deda9af22a40.jpg' },
+          { question: 'Что производит данный завод-резидент?', answer: 'ООО "Белая Дача Алабуга" — производство салатной и овощной продукции', points: 300, answered: false, image: 'https://cdn.poehali.dev/files/281d327c-b335-4dce-a75f-3064b2f40ffb.jpg' },
+          { question: 'Что производит данный завод-резидент?', answer: 'ООО "Алабуга-Волокно" — производство углеволокна и ПАН-прекурсора', points: 400, answered: false, image: 'https://cdn.poehali.dev/files/cd231dad-ed69-48f2-a1e5-112d14d0360c.jpg' },
+          { question: 'Что производит данный завод-резидент?', answer: 'ООО "Кастамону Интегрейтед Вуд Индастри" — производство плит MDF, HDF и ламинированных напольных покрытий', points: 500, answered: false, image: 'https://cdn.poehali.dev/files/5f532347-73d9-4fbb-9f37-3859c4ab21e5.jpg' },
+        ],
+      },
+    ],
+    round2: [
+      {
+        name: 'Угадай кто',
+        questions: [
+          { question: 'Кто на фото?', answer: 'Светлана Ходченкова', points: 200, answered: false, image: 'https://cdn.poehali.dev/files/c71a3a89-9a2d-4a3e-95b4-d5b1eca3f558.png' },
+          { question: 'Кто на фото?', answer: 'Владимир Путин', points: 400, answered: false, image: 'https://cdn.poehali.dev/files/5750b59a-fde4-4dfc-ad4d-ecbe961c0d40.png' },
+          { question: 'Кто на фото?', answer: 'Стас Михайлов', points: 600, answered: false, image: 'https://cdn.poehali.dev/files/dc7aad72-8e0e-4c50-b0af-baa720fbacaa.png' },
+          { question: 'Кто на фото?', answer: 'Константин Хабенский', points: 800, answered: false, image: 'https://cdn.poehali.dev/files/8d2ee602-c1b3-4cf3-88b5-e138de2bef61.png' },
+          { question: 'Кто на фото?', answer: 'Николай Басков', points: 1000, answered: false, image: 'https://cdn.poehali.dev/files/a51ef547-6840-4dd1-940b-df4784427108.png' },
+          { question: 'Кто на фото?', answer: 'Филипп Киркоров', points: 0, answered: false, image: 'https://cdn.poehali.dev/files/e8e74ba5-f702-4c8b-b244-d5baa14a6735.png', special: 'bonus' },
+          { question: 'Кто на фото?', answer: 'Сергей Безруков', points: 0, answered: false, image: 'https://cdn.poehali.dev/files/3e178db2-8a74-4882-b32a-589323e2748f.png', special: 'bonus' },
+        ],
+      },
+      {
+        name: 'Теоретическая физика',
+        questions: [
+          { question: 'Что такое "теория струн"?', answer: 'Теория, предполагающая, что элементарные частицы - это вибрирующие струны', points: 200, answered: false },
+          { question: 'Кто сформулировал теорию относительности?', answer: 'Альберт Эйнштейн', points: 400, answered: false },
+          { question: 'Что такое "квантовая суперпозиция"?', answer: 'Способность квантовой системы находиться в нескольких состояниях одновременно', points: 600, answered: false },
+          { question: 'Как называется частица, переносящая электромагнитное взаимодействие?', answer: 'Фотон', points: 800, answered: false, special: 'cat' },
+          { question: 'Что такое "энтропия" в термодинамике?', answer: 'Мера беспорядка системы', points: 1000, answered: false, special: 'hint' },
+        ],
+      },
+      {
+        name: 'Академическая музыка',
+        questions: [
+          { question: 'Кто написал "Времена года"?', answer: 'Антонио Вивальди', points: 200, answered: false },
+          { question: 'Какой композитор был глухим?', answer: 'Людвиг ван Бетховен', points: 400, answered: false },
+          { question: 'Что такое "контрапункт" в музыке?', answer: 'Одновременное сочетание независимых мелодий', points: 600, answered: false },
+          { question: 'Кто автор балета "Весна священная"?', answer: 'Игорь Стравинский', points: 800, answered: false },
+          { question: 'Какой русский композитор написал оперу "Князь Игорь"?', answer: 'Александр Бородин', points: 1000, answered: false, special: 'cat' },
+        ],
+      },
+      {
+        name: 'Постмодернистская литература',
+        questions: [
+          { question: 'Кто написал "Хазарский словарь"?', answer: 'Милорад Павич', points: 200, answered: false },
+          { question: 'Какой автор использовал технику "потока сознания" в "Улиссе"?', answer: 'Джеймс Джойс', points: 400, answered: false },
+          { question: 'Кто автор "Бледного огня"?', answer: 'Владимир Набоков', points: 600, answered: false },
+          { question: 'Как называется роман Умберто Эко о монастырской библиотеке?', answer: '"Имя розы"', points: 800, answered: false },
+          { question: 'Кто написал "Гаргантюа и Пантагрюэль"?', answer: 'Франсуа Рабле', points: 1000, answered: false },
+        ],
+      },
+      {
+        name: 'Макроэкономика',
+        questions: [
+          { question: 'Что такое "кривая Лаффера"?', answer: 'Графическая зависимость налоговых поступлений от налоговой ставки', points: 200, answered: false },
+          { question: 'Кто автор "Богатства народов"?', answer: 'Адам Смит', points: 400, answered: false },
+          { question: 'Что такое "паритет покупательной способности"?', answer: 'Сравнение валют через стоимость корзины товаров', points: 600, answered: false, special: 'cat' },
+          { question: 'Как называется экономическая школа, отрицающая государственное вмешательство?', answer: 'Австрийская школа', points: 800, answered: false },
+          { question: 'Что такое "деривативы" в финансах?', answer: 'Финансовые инструменты, основанные на других активах', points: 1000, answered: false },
+        ],
+      },
+      {
+        name: 'Современное искусство',
+        questions: [
+          { question: 'Кто создал "Фонтан" - писсуар как произведение искусства?', answer: 'Марсель Дюшан', points: 200, answered: false },
+          { question: 'Как называется художественное направление, к которому относится Энди Уорхол?', answer: 'Поп-арт', points: 400, answered: false },
+          { question: 'Кто автор инсталляции "Абсолютная пустота"?', answer: 'Яёи Кусама', points: 600, answered: false },
+          { question: 'Какой художник известен "живыми картинами" из людей?', answer: 'Сэнди Скогланд', points: 800, answered: false },
+          { question: 'Кто создал перформанс "Ритм 0"?', answer: 'Марина Абрамович', points: 1000, answered: false, special: 'cat' },
+        ],
+      },
+      {
+        name: 'Алабуга',
+        questions: [
+          { question: 'Что производится на данном заводе-резиденте?', answer: 'Химические средства защиты растений (пестициды) или удобрения', points: 200, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/bucket/c0bbe63a-9898-4f72-b7ab-cd603bbf8c64.jpg' },
+          { question: 'Раз в какой период времени участницы программы "Алабуга Старт" повышаются в должности?', answer: 'Каждые 6 месяцев', points: 400, answered: false },
+          { question: 'Расшифруйте аббревиатуру АО "ОЭЗ ППТ".', answer: 'Акционерное общество "Особая экономическая зона промышленно-производственного типа"', points: 600, answered: false },
+          { question: 'Сколько всего направлений (специальностей) есть в программе "Алабуга Старт" на данный момент?', answer: '7', points: 800, answered: false },
+          { question: 'Назовите 3 любых направления в рамках программы "Алабуга Старт"', answer: 'Необходимо сверить ведущему', points: 1000, answered: false },
+          { question: 'С каким количеством стран взаимодействует программа "Алабуга Старт" на данный момент?', answer: '87 стран', points: 0, answered: false, special: 'bonus' },
+        ],
+      },
+    ],
+    final: [
+      { theme: 'Философия', question: 'Кто автор "Государства"?', answer: 'Платон' },
+      { theme: 'Физика', question: 'Как называется элементарная частица, придающая массу другим частицам?', answer: 'Бозон Хиггса' },
+      { theme: 'Литература', question: 'Кто написал "Улисса"?', answer: 'Джеймс Джойс' },
+      { theme: 'Биология', question: 'Как называется наука о древних вымерших организмах?', answer: 'Палеонтология' },
+      { theme: 'Экономика', question: 'Кто автор "Капитала"?', answer: 'Карл Маркс' },
+      { theme: 'Искусство', question: 'В каком стиле написана "Герника" Пикассо?', answer: 'Кубизм' },
+    ],
+  },
+  hard: {
+    round1: [
+      {
+        name: 'Эмодзи',
+        questions: [
+          { question: 'Угадай песню по эмодзи', answer: 'Зеленоглазое такси', points: 100, answered: false, image: 'https://cdn.poehali.dev/files/35a9508f-ca7e-44e1-a74a-805e135a593f.png' },
+          { question: 'Угадай песню по эмодзи', answer: 'Ветер с моря дул', points: 200, answered: false, image: 'https://cdn.poehali.dev/files/82559d48-084a-4b14-b382-8007c5aa4bbe.png' },
+          { question: 'Угадай песню по эмодзи', answer: 'Солнце Монако', points: 300, answered: false, image: 'https://cdn.poehali.dev/files/b18a1049-6486-4296-8547-c1f9a1179957.png' },
+          { question: 'Угадай песню по эмодзи', answer: 'Прованс', points: 400, answered: false, image: 'https://cdn.poehali.dev/files/ec73c64a-0776-48b1-bc46-c47b7427e660.png' },
+          { question: 'Угадай песню по эмодзи', answer: 'Знаешь ли ты', points: 500, answered: false, image: 'https://cdn.poehali.dev/files/f489bc31-87bf-4e63-81b0-93919aed6026.png' },
+          { question: 'Угадай песню по эмодзи', answer: 'Районы кварталы', points: 0, answered: false, image: 'https://cdn.poehali.dev/files/a7b64841-fa1f-4122-90c0-7a8b0c33b4a1.png', special: 'bonus' },
+          { question: 'Угадай песню по эмодзи', answer: 'Белые ночи', points: 0, answered: false, image: 'https://cdn.poehali.dev/files/e340afac-d3df-47dd-a43d-10869a4282e6.png', special: 'bonus' },
+        ],
+      },
+      {
+        name: 'Что производит?',
+        questions: [
+          { question: 'Что производит данный завод-резидент?', answer: 'ООО "Соллерс Алабуга" — производство легких коммерческих автомобилей', points: 100, answered: false, image: 'https://cdn.poehali.dev/files/c476991c-c95d-410d-a05e-b20209e3af8d.jpg' },
+          { question: 'Что производит данный завод-резидент?', answer: 'ООО "Елабужский аккумуляторный завод" — производство автомобильных аккумуляторных батарей', points: 200, answered: false, image: 'https://cdn.poehali.dev/files/90837124-6986-443d-9a02-deda9af22a40.jpg' },
+          { question: 'Что производит данный завод-резидент?', answer: 'ООО "Белая Дача Алабуга" — производство салатной и овощной продукции', points: 300, answered: false, image: 'https://cdn.poehali.dev/files/281d327c-b335-4dce-a75f-3064b2f40ffb.jpg' },
+          { question: 'Что производит данный завод-резидент?', answer: 'ООО "Алабуга-Волокно" — производство углеволокна и ПАН-прекурсора', points: 400, answered: false, image: 'https://cdn.poehali.dev/files/cd231dad-ed69-48f2-a1e5-112d14d0360c.jpg' },
+          { question: 'Что производит данный завод-резидент?', answer: 'ООО "Кастамону Интегрейтед Вуд Индастри" — производство плит MDF, HDF и ламинированных напольных покрытий', points: 500, answered: false, image: 'https://cdn.poehali.dev/files/5f532347-73d9-4fbb-9f37-3859c4ab21e5.jpg' },
+        ],
+      },
+      {
+        name: 'Современные научные концепции',
+        questions: [
+          { question: 'Что такое "эффект Даннинга-Крюгера"?', answer: 'Когнитивное искажение, когда некомпетентные люди переоценивают свои способности', points: 100, answered: false },
+          { question: 'Какая природная структура с гексагональной симметрией показана на фото?', answer: 'Снежинка — кристалл льда', points: 200, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/d64303f6-4218-44c9-bb9f-de49fa356716.jpg' },
+          { question: 'Что такое "темная материя"?', answer: 'Гипотетическая форма материи, не испускающая электромагнитного излучения', points: 300, answered: false, special: 'cat' },
+          { question: 'Как называется процесс, при котором ИИ создает новые данные на основе обучения?', answer: 'Генеративное моделирование', points: 400, answered: false },
+          { question: 'Что такое "квантовая запутанность"?', answer: 'Квантовомеханическое явление, при котором состояния частиц связаны', points: 500, answered: false },
+        ],
+      },
+      {
+        name: 'Артхаусное кино и режиссура',
+        questions: [
+          { question: 'Кто снял фильм "Сталкер"?', answer: 'Андрей Тарковский', points: 100, answered: false },
+          { question: 'Чьё это перо с характерным «глазком»?', answer: 'Павлин', points: 200, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/ed6ff4fa-d62d-414a-88c4-4c98177add33.jpg' },
+          { question: 'Фильм какого режиссера выиграл "Золотую пальмовую ветвь" в 2019 году?', answer: 'Бон Джун Хо - "Паразиты"', points: 300, answered: false },
+          { question: 'Кто режиссер трилогии "Апокалипсис"?', answer: 'Фрэнсис Форд Коппола - "Апокалипсис сегодня"', points: 400, answered: false },
+          { question: 'Какой фильм Дэвида Линча считается образцом сюрреализма?', answer: '"Малхолланд Драйв"', points: 500, answered: false, special: 'cat' },
+        ],
+      },
+      {
+        name: 'Политическая география',
+        questions: [
+          { question: 'Какая страна имеет эксклав Калининградскую область?', answer: 'Россия', points: 100, answered: false },
+          { question: 'Какому животному принадлежит эта текстура кожи?', answer: 'Слон', points: 200, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/0272478a-2d96-4e07-8986-4ccf9bbe729a.jpg' },
+          { question: 'Какой город является административной столицей ЮАР?', answer: 'Претория', points: 300, answered: false },
+          { question: 'На территории скольких стран протекает Амазонка?', answer: '9 стран', points: 400, answered: false },
+          { question: 'Какая страна имеет самую длинную береговую линию?', answer: 'Канада', points: 500, answered: false },
+        ],
+      },
+      {
+        name: 'Биохимия и генетика',
+        questions: [
+          { question: 'Что расшифровывает аббревиатура ДНК?', answer: 'Дезоксирибонуклеиновая кислота', points: 100, answered: false },
+          { question: 'Какому насекомому принадлежит это крыло при макросъёмке?', answer: 'Стрекоза', points: 200, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/795d94b6-0159-489f-bfa5-36dd1d22dce0.jpg' },
+          { question: 'Что такое CRISPR-Cas9?', answer: 'Технология редактирования генома', points: 300, answered: false },
+          { question: 'Какой орган человека производит инсулин?', answer: 'Поджелудочная железа', points: 400, answered: false },
+          { question: 'Что такое митохондриальная Ева?', answer: 'Последний общий предок всех людей по материнской линии', points: 500, answered: false },
+        ],
+      },
+      {
+        name: 'Кибернетика и алгоритмы',
+        questions: [
+          { question: 'Что такое "машинное обучение без учителя"?', answer: 'Алгоритмы, находящие паттерны в неразмеченных данных', points: 100, answered: false },
+          { question: 'Какому животному принадлежит этот панцирь?', answer: 'Черепаха', points: 200, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/223dea2f-b8dd-4b4b-8cfe-b5cf5e9d8022.jpg' },
+          { question: 'Что такое "нейронная сеть с обратным распространением ошибки"?', answer: 'Алгоритм обучения нейросетей', points: 300, answered: false },
+          { question: 'Как называется парадигма программирования, основанная на объектах?', answer: 'Объектно-ориентированное программирование', points: 400, answered: false },
+          { question: 'Какой алгоритм лежит в основе Bitcoin?', answer: 'Proof-of-Work', points: 500, answered: false, special: 'cat' },
+        ],
+      },
+      {
+        name: 'История философии',
+        questions: [
+          { question: 'Кто сказал "Я мыслю, следовательно, существую"?', answer: 'Рене Декарт', points: 100, answered: false },
+          { question: 'Какому животному принадлежит этот полосатый хвост?', answer: 'Красная панда (малая панда)', points: 200, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/1256b946-7272-4153-8ecc-718ab02fad48.jpg' },
           { question: 'Кто автор работы "Так говорил Заратустра"?', answer: 'Фридрих Ницше', points: 300, answered: false },
           { question: 'Как называется главный труд Иммануила Канта?', answer: '"Критика чистого разума"', points: 400, answered: false },
           { question: 'Кто из философов был учителем Александра Македонского?', answer: 'Аристотель', points: 500, answered: false },
