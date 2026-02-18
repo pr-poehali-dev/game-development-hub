@@ -173,7 +173,7 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
       {
         name: 'Алабуга',
         questions: [
-          { question: 'Что производится на данном заводе-резиденте?', answer: 'Химические средства защиты растений (пестициды) или удобрения', points: 200, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/4b34cdd9-f966-4c2f-9f1a-665bbf61d897.jpg' },
+          { question: 'Что производится на данном заводе-резиденте?', answer: 'Химические средства защиты растений (пестициды) или удобрения', points: 200, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/bucket/c0bbe63a-9898-4f72-b7ab-cd603bbf8c64.jpg' },
           { question: 'Раз в какой период времени участницы программы "Алабуга Старт" повышаются в должности?', answer: 'Каждые 6 месяцев', points: 400, answered: false },
           { question: 'Расшифруйте аббревиатуру АО "ОЭЗ ППТ".', answer: 'Акционерное общество "Особая экономическая зона промышленно-производственного типа"', points: 600, answered: false },
           { question: 'Сколько всего направлений (специальностей) есть в программе "Алабуга Старт" на данный момент?', answer: '7', points: 800, answered: false },
@@ -501,7 +501,7 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
       {
         name: 'Алабуга',
         questions: [
-          { question: 'Что производится на данном заводе-резиденте?', answer: 'Химические средства защиты растений (пестициды) или удобрения', points: 200, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/4b34cdd9-f966-4c2f-9f1a-665bbf61d897.jpg' },
+          { question: 'Что производится на данном заводе-резиденте?', answer: 'Химические средства защиты растений (пестициды) или удобрения', points: 200, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/bucket/c0bbe63a-9898-4f72-b7ab-cd603bbf8c64.jpg' },
           { question: 'Раз в какой период времени участницы программы "Алабуга Старт" повышаются в должности?', answer: 'Каждые 6 месяцев', points: 400, answered: false },
           { question: 'Расшифруйте аббревиатуру АО "ОЭЗ ППТ".', answer: 'Акционерное общество "Особая экономическая зона промышленно-производственного типа"', points: 600, answered: false },
           { question: 'Сколько всего направлений (специальностей) есть в программе "Алабуга Старт" на данный момент?', answer: '7', points: 800, answered: false },
