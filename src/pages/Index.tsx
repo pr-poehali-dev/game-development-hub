@@ -180,18 +180,6 @@ export default function Index() {
 
   const answerWrong = () => {
     if (selectedQuestion) {
-      const question = categories[selectedQuestion.category].questions[selectedQuestion.question];
-      const newPlayers = [...players];
-      const targetId = catTarget !== null ? catTarget : currentPlayer;
-      
-      let points = question.points;
-      if (question.special === 'bonus' && bonusPoints !== null) {
-        points = bonusPoints;
-      }
-      
-      newPlayers[targetId].score -= points;
-      setPlayers(newPlayers);
-
       const newCategories = [...categories];
       newCategories[selectedQuestion.category].questions[selectedQuestion.question].answered = true;
       setCategories(newCategories);
@@ -255,8 +243,6 @@ export default function Index() {
     const bet = finalBets[playerId] || 0;
     if (correct) {
       newPlayers[playerIndex].score += bet;
-    } else {
-      newPlayers[playerIndex].score -= bet;
     }
     setPlayers(newPlayers);
 
@@ -845,6 +831,34 @@ export default function Index() {
                 <Icon name="BookOpen" size={16} className="mr-2" />
                 Правила
               </Button>
+              {gameState === 'round1' && (
+                <Button 
+                  variant="outline" 
+                  onClick={() => {
+                    if (confirm('Вы уверены? В раунде остались нерешенные вопросы. Перейти к раунду 2?')) {
+                      startRound2();
+                    }
+                  }} 
+                  size="sm"
+                >
+                  <Icon name="FastForward" size={16} className="mr-2" />
+                  К раунду 2
+                </Button>
+              )}
+              {gameState === 'round2' && (
+                <Button 
+                  variant="outline" 
+                  onClick={() => {
+                    if (confirm('Вы уверены? В раунде остались нерешенные вопросы. Перейти к финалу?')) {
+                      startFinalRound();
+                    }
+                  }} 
+                  size="sm"
+                >
+                  <Icon name="Zap" size={16} className="mr-2" />
+                  К финалу
+                </Button>
+              )}
               <Button variant="outline" onClick={resetGame} size="sm">
                 <Icon name="RotateCcw" size={16} className="mr-2" />
                 Сброс
