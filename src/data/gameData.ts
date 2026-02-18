@@ -39,9 +39,9 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
       {
         name: 'Кино и мультфильмы',
         questions: [
-          { question: 'Как зовут главного героя в фильме "Форрест Гамп"?', answer: 'Форрест Гамп', points: 100, answered: false },
-          { question: 'В каком мультфильме есть король Джулиан и пингвины?', answer: 'Мадагаскар', points: 200, answered: false },
-          { question: 'Какой актер сыграл Тони Старка в фильмах Marvel?', answer: 'Роберт Дауни-младший', points: 300, answered: false },
+          { question: 'Как зовут этого персонажа?', answer: 'Шрек', points: 100, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/c7f60ab6-17ac-4ba9-9e6c-9669e06b0245.jpg' },
+          { question: 'Из какого мультфильма этот персонаж?', answer: 'Король Лев', points: 200, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/a5d97550-c346-4a6f-830f-d1f7aa0b54e9.jpg' },
+          { question: 'Какой супергерой носит этот костюм?', answer: 'Железный человек (Тони Старк)', points: 300, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/760097c1-424a-48e7-9604-0e793291433b.jpg' },
           { question: 'Как называется фильм о школе волшебников, где есть профессор Дамблдор?', answer: 'Гарри Поттер', points: 400, answered: false, special: 'cat' },
           { question: 'Как зовут героя ДиКаприо в фильме "Выживший"?', answer: 'Хью Гласс', points: 500, answered: false },
         ],
@@ -51,9 +51,9 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
         questions: [
           { question: 'Какое животное изображено на логотипе браузера Firefox?', answer: 'Красная лиса', points: 100, answered: false },
           { question: 'Какая птица является символом мудрости?', answer: 'Сова', points: 200, answered: false },
-          { question: 'Какое животное самое быстрое на суше?', answer: 'Гепард', points: 300, answered: false },
+          { question: 'Какое животное изображено на картинке?', answer: 'Гепард — самое быстрое животное на суше', points: 300, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/b041f8b8-7087-4bb3-b2da-44c1cd60480d.jpg' },
           { question: 'Какое морское млекопитающее поет песни?', answer: 'Горбатый кит', points: 400, answered: false },
-          { question: 'Какое животное может менять цвет кожи?', answer: 'Хамелеон', points: 500, answered: false, special: 'cat' },
+          { question: 'Какое животное изображено на картинке? Чем оно знаменито?', answer: 'Хамелеон — может менять цвет кожи', points: 500, answered: false, special: 'cat', image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/4c3d4fc4-e16c-40b5-8910-f07598cc0a2b.jpg' },
         ],
       },
       {
@@ -69,9 +69,9 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
       {
         name: 'Еда и кулинария',
         questions: [
-          { question: 'Из какой страны родом паэлья?', answer: 'Испания', points: 100, answered: false },
+          { question: 'Из какой страны родом это блюдо?', answer: 'Испания (паэлья)', points: 100, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/a3485c8b-691e-4696-80fe-29393b58a390.jpg' },
           { question: 'Какой напиток получают путем брожения винограда?', answer: 'Вино', points: 200, answered: false },
-          { question: 'Какая специя самая дорогая в мире?', answer: 'Шафран', points: 300, answered: false },
+          { question: 'Какая это специя? Она самая дорогая в мире', answer: 'Шафран', points: 300, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/52efe13e-2e9a-41d0-9046-054a2163556d.jpg' },
           { question: 'В какой стране изобрели майонез?', answer: 'Франция', points: 400, answered: false, special: 'cat' },
           { question: 'Какой овощ называют "перуанским яблоком"?', answer: 'Помидор', points: 500, answered: false },
         ],
@@ -133,7 +133,7 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
       {
         name: 'Природа и экология',
         questions: [
-          { question: 'Какое дерево самое высокое в мире?', answer: 'Секвойя', points: 200, answered: false },
+          { question: 'Что за дерево на картинке? Оно самое высокое в мире', answer: 'Секвойя', points: 200, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/b3772c0f-927c-497d-9ed3-2215effc0426.jpg' },
           { question: 'Как называется самая большая жар-птица?', answer: 'Феникс - мифическая', points: 400, answered: false },
           { question: 'Какая планета известна как "Утренняя звезда"?', answer: 'Венера', points: 600, answered: false },
           { question: 'Как называется явление северного сияния?', answer: 'Аврора', points: 800, answered: false, special: 'cat' },
@@ -153,7 +153,7 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
       {
         name: 'Искусство',
         questions: [
-          { question: 'Кто написал картину "Бурлаки на Волге"?', answer: 'Илья Репин', points: 200, answered: false },
+          { question: 'Кто написал эту картину?', answer: 'Илья Репин — «Бурлаки на Волге»', points: 200, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/65cdd3dc-259c-420b-a595-a03ad1d32e7b.jpg' },
           { question: 'Как называется техника рисования по сырой штукатурке?', answer: 'Фреска', points: 400, answered: false },
           { question: 'Какой художник отрезал себе ухо?', answer: 'Винсент Ван Гог', points: 600, answered: false },
           { question: 'Что такое палитра?', answer: 'Доска для смешивания красок', points: 800, answered: false },
@@ -173,7 +173,7 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
       {
         name: 'Алабуга',
         questions: [
-          { question: 'Какую минимальную заработную плату получают участницы программы "Алабуга Старт" в начале своей карьеры?', answer: '130 000 рублей до вычета налогов', points: 200, answered: false },
+          { question: 'Что производится на данном заводе-резиденте?', answer: 'Химические средства защиты растений (пестициды) или удобрения', points: 200, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/4b34cdd9-f966-4c2f-9f1a-665bbf61d897.jpg' },
           { question: 'Раз в какой период времени участницы программы "Алабуга Старт" повышаются в должности?', answer: 'Каждые 6 месяцев', points: 400, answered: false },
           { question: 'Расшифруйте аббревиатуру АО "ОЭЗ ППТ".', answer: 'Акционерное общество "Особая экономическая зона промышленно-производственного типа"', points: 600, answered: false },
           { question: 'Сколько всего направлений (специальностей) есть в программе "Алабуга Старт" на данный момент?', answer: '7', points: 800, answered: false },
@@ -501,7 +501,7 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
       {
         name: 'Алабуга',
         questions: [
-          { question: 'Какую минимальную заработную плату получают участницы программы "Алабуга Старт" в начале своей карьеры?', answer: '130 000 рублей до вычета налогов', points: 200, answered: false },
+          { question: 'Что производится на данном заводе-резиденте?', answer: 'Химические средства защиты растений (пестициды) или удобрения', points: 200, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/4b34cdd9-f966-4c2f-9f1a-665bbf61d897.jpg' },
           { question: 'Раз в какой период времени участницы программы "Алабуга Старт" повышаются в должности?', answer: 'Каждые 6 месяцев', points: 400, answered: false },
           { question: 'Расшифруйте аббревиатуру АО "ОЭЗ ППТ".', answer: 'Акционерное общество "Особая экономическая зона промышленно-производственного типа"', points: 600, answered: false },
           { question: 'Сколько всего направлений (специальностей) есть в программе "Алабуга Старт" на данный момент?', answer: '7', points: 800, answered: false },

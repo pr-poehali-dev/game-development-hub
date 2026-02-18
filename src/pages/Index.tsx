@@ -174,7 +174,7 @@ export default function Index() {
       }
 
       closeQuestion();
-      checkRoundEnd();
+      checkRoundEnd(newCategories);
     }
   };
 
@@ -189,7 +189,7 @@ export default function Index() {
       }
 
       closeQuestion();
-      checkRoundEnd();
+      checkRoundEnd(newCategories);
     }
   };
 
@@ -197,8 +197,9 @@ export default function Index() {
     setCurrentPlayer((prev) => (prev + 1) % players.length);
   };
 
-  const checkRoundEnd = () => {
-    const allAnswered = categories.every((cat) => cat.questions.every((q) => q.answered));
+  const checkRoundEnd = (updatedCategories?: Category[]) => {
+    const cats = updatedCategories || categories;
+    const allAnswered = cats.every((cat) => cat.questions.every((q) => q.answered));
     if (allAnswered && selectedLevel) {
       if (gameState === 'round1') {
         setGameState('round1-end');
@@ -1019,21 +1020,18 @@ export default function Index() {
                       </Card>
                     )}
 
-                    {categories[selectedQuestion.category].questions[selectedQuestion.question].image ? (
-                      <Card className="p-4 bg-secondary/30 border border-border/40">
+                    <Card className="p-8 bg-secondary/30 border border-border/40 space-y-4">
+                      <p className="text-xl md:text-2xl text-center leading-relaxed">
+                        {categories[selectedQuestion.category].questions[selectedQuestion.question].question}
+                      </p>
+                      {categories[selectedQuestion.category].questions[selectedQuestion.question].image && (
                         <img 
                           src={categories[selectedQuestion.category].questions[selectedQuestion.question].image} 
                           alt="Вопрос с изображением"
                           className="w-full max-w-md max-h-96 mx-auto rounded-lg object-contain"
                         />
-                      </Card>
-                    ) : (
-                      <Card className="p-8 bg-secondary/30 border border-border/40">
-                        <p className="text-xl md:text-2xl text-center leading-relaxed">
-                          {categories[selectedQuestion.category].questions[selectedQuestion.question].question}
-                        </p>
-                      </Card>
-                    )}
+                      )}
+                    </Card>
 
                     {showAnswer && (
                       <Card className="p-8 bg-primary/10 border-2 border-primary">
