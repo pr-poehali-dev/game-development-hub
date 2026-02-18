@@ -243,6 +243,8 @@ export default function Index() {
     const bet = finalBets[playerId] || 0;
     if (correct) {
       newPlayers[playerIndex].score += bet;
+    } else {
+      newPlayers[playerIndex].score -= bet;
     }
     setPlayers(newPlayers);
 
