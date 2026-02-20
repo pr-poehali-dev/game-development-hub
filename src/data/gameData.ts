@@ -89,7 +89,7 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
       {
         name: 'Литература и сказки',
         questions: [
-          { question: 'Как зовут трёх поросят из известной сказки?', answer: 'Ниф-Ниф, Нуф-Нуф, Наф-Наф', points: 100, answered: false },
+          { question: 'Как зовут трёх поросят из известной сказки?', answer: 'Ниф-Ниф, Нуф-Нуф, Наф-Наф', points: 100, answered: false, image: 'https://cdn.poehali.dev/files/22235c6c-da7f-4f8e-ae3b-6e541ddd93ee.png' },
           { question: 'Как зовут главного героя сказки "Конёк-Горбунок"?', answer: 'Иван', points: 200, answered: false },
           { question: 'Кто разбудил Спящую красавицу в сказке?', answer: 'Принц', points: 300, answered: false },
           { question: 'Как зовут хозяина Кота в сапогах в известной сказке?', answer: 'Маркиз Карабас', points: 400, answered: false },
