@@ -49,21 +49,21 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
       {
         name: 'Животные',
         questions: [
-          { question: 'Какому животному принадлежат эти уши?', answer: 'Кошка', points: 100, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/e9eede2b-e5dc-43bd-a7db-c7aa6e0c376c.jpg' },
-          { question: 'Какое животное имеет такой узор на теле?', answer: 'Зебра', points: 200, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/8ba193b9-2c59-4d23-b731-bd82575d5300.jpg' },
-          { question: 'Какое животное изображено на картинке?', answer: 'Гепард — самое быстрое животное на суше', points: 300, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/b041f8b8-7087-4bb3-b2da-44c1cd60480d.jpg' },
-          { question: 'Чей это хвостик-крючок?', answer: 'Свинья', points: 400, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/c901a4a6-a757-4088-891c-025ac3e08d0f.jpg' },
-          { question: 'Какое животное изображено на картинке? Чем оно знаменито?', answer: 'Хамелеон — может менять цвет кожи', points: 500, answered: false, special: 'cat', image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/4c3d4fc4-e16c-40b5-8910-f07598cc0a2b.jpg' },
+          { question: 'Гуляет сам по себе и всегда приземляется на четыре лапы?', answer: 'Кот', points: 100, answered: false, image: 'https://cdn.poehali.dev/files/ac0a154f-1c11-4063-94af-70c788a3578c.JPG' },
+          { question: 'На дороге и земле имеет 1 полосатый узор.', answer: 'Зебра', points: 200, answered: false, image: 'https://cdn.poehali.dev/files/0dbb7665-b05a-47d9-8ecf-c65924c8607b.jpg' },
+          { question: 'Кому принадлежит этот полосатый хвост?', answer: 'Гепард', points: 300, answered: false, image: 'https://cdn.poehali.dev/files/ff752be8-9bbb-4b0f-b66b-067928493d07.jpeg' },
+          { question: 'Чей это хвостик-крючок?', answer: 'Свинья', points: 400, answered: false, image: 'https://cdn.poehali.dev/files/bce65569-dba5-4750-a71f-8617dfa5e6e9.jpg' },
+          { question: 'Какой символ символизирует Республику Татарстан?', answer: 'Зилант', points: 500, answered: false, image: 'https://cdn.poehali.dev/files/f85898cf-1d71-4a72-8f60-c55795baf919.jpg' },
         ],
       },
       {
         name: 'География',
         questions: [
-          { question: 'Угадай достопримечательность по силуэту', answer: 'Эйфелева башня (Париж)', points: 100, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/ddcc9d68-8f46-4d82-94fc-c480c5ddeb53.jpg' },
-          { question: 'На территории скольких стран находятся Альпы?', answer: '8 стран', points: 200, answered: false },
-          { question: 'Угадай достопримечательность по силуэту', answer: 'Статуя Свободы (Нью-Йорк)', points: 300, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/5e8dae45-58fb-423a-9cf0-1480019e0539.jpg' },
-          { question: 'Какая пустыня самая холодная?', answer: 'Антарктическая пустыня', points: 400, answered: false },
-          { question: 'Какой пролив соединяет Тихий и Атлантический океаны?', answer: 'Магелланов пролив', points: 500, answered: false },
+          { question: 'Перед вами вид с верхушки знаменитого сооружения, возведённого Густавом Эйфелем. Каково официальное название данного сооружения?', answer: 'Эйфелева башня', points: 100, answered: false, image: 'https://cdn.poehali.dev/files/0b3f7d42-10f6-4184-96e1-3d3c93b2cf63.JPG' },
+          { question: 'Как называются горы, где родился знаменитый сыр эмменталь?', answer: 'Альпы', points: 200, answered: false },
+          { question: 'Как называется величественный памятник в Волгограде, запечатленный на этой картине?', answer: 'Родина Мать зовёт', points: 300, answered: false, image: 'https://cdn.poehali.dev/files/7a7215a5-4fcd-4d30-a0f6-9da16226b678.jpeg' },
+          { question: 'Какая пустыня считается самой холодной на планете Земля?', answer: 'Антарктида', points: 400, answered: false },
+          { question: 'Какой океан омывает берега сразу трёх частей света?', answer: 'Тихий океан', points: 500, answered: false },
         ],
       },
       {
@@ -71,7 +71,7 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
         questions: [
           { question: 'Из какой страны родом это блюдо?', answer: 'Испания (паэлья)', points: 100, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/a3485c8b-691e-4696-80fe-29393b58a390.jpg' },
           { question: 'Какой напиток получают путем брожения винограда?', answer: 'Вино', points: 200, answered: false },
-          { question: 'Какая это специя? Она самая дорогая в мире', answer: 'Шафран', points: 300, answered: false, image: 'https://cdn.poehali.dev/projects/5f707ed0-eb53-4c5e-bb14-adea30baa84f/files/52efe13e-2e9a-41d0-9046-054a2163556d.jpg' },
+          { question: 'Какая специя получила прозвище "король специй"?', answer: 'Чёрный перец', points: 300, answered: false },
           { question: 'В какой стране изобрели майонез?', answer: 'Франция', points: 400, answered: false, special: 'cat' },
           { question: 'Какой овощ называют "перуанским яблоком"?', answer: 'Помидор', points: 500, answered: false },
         ],
@@ -89,11 +89,11 @@ export const GAME_DATA: Record<GameLevel, { round1: Category[]; round2: Category
       {
         name: 'Литература и сказки',
         questions: [
-          { question: 'Кто написал "Робинзона Крузо"?', answer: 'Даниэль Дефо', points: 100, answered: false },
-          { question: 'Сколько лет спала Спящая красавица?', answer: '100 лет', points: 200, answered: false },
-          { question: 'Как звали кота в "Кота в сапогах"?', answer: 'Кот или просто Кот в сапогах', points: 300, answered: false },
-          { question: 'В какой сказке есть "избушка на курьих ножках"?', answer: 'Баба Яга в русских сказках', points: 400, answered: false },
-          { question: 'Кто автор "Винни-Пуха"?', answer: 'Алан Милн', points: 500, answered: false, special: 'cat' },
+          { question: 'Как зовут трёх поросят из известной сказки?', answer: 'Ниф-Ниф, Нуф-Нуф, Наф-Наф', points: 100, answered: false },
+          { question: 'Как зовут главного героя сказки "Конёк-Горбунок"?', answer: 'Иван', points: 200, answered: false },
+          { question: 'Кто разбудил Спящую красавицу в сказке?', answer: 'Принц', points: 300, answered: false },
+          { question: 'Как зовут хозяина Кота в сапогах в известной сказке?', answer: 'Маркиз Карабас', points: 400, answered: false },
+          { question: 'Кто написал сказку "Золотой ключик, или Приключения Буратино"?', answer: 'Алексей Толстой', points: 500, answered: false },
         ],
       },
       {
